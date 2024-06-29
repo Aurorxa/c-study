@@ -5,5 +5,6 @@ set(CMAKE_C_STANDARD 99)
 
 #  Add executable
 add_executable(HelloWorld HelloWorld.c)
+add_executable(Demo1 Demo1.c)
 # Include header files
 target_include_directories(HelloWorld PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
