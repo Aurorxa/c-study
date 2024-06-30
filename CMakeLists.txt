@@ -22,6 +22,9 @@ endif ()
 set(SOURCES)
 collect_sources(SOURCES ${CMAKE_SOURCE_DIR})
 
+# 用于存储已经处理过的可执行文件名，防止重复
+set(EXECUTABLE_NAMES)
+
 # 创建可执行文件
 foreach (SOURCE ${SOURCES})
     # 获取文件的相对路径
@@ -31,15 +34,25 @@ foreach (SOURCE ${SOURCES})
     string(REPLACE "\\" "_" EXECUTABLE_NAME ${EXECUTABLE_NAME})
     string(REPLACE "." "_" EXECUTABLE_NAME ${EXECUTABLE_NAME})
 
-    # 创建可执行文件
-    add_executable(${EXECUTABLE_NAME} ${SOURCE})
+    # 处理与 CMakeLists.txt 文件同名的问题
+    if (${EXECUTABLE_NAME} STREQUAL "CMakeLists_txt")
+        set(EXECUTABLE_NAME "${EXECUTABLE_NAME}_exec")
+    endif ()
 
-    # 查找源文件所在的目录，并添加为包含目录（头文件可能在同一目录下）
-    get_filename_component(DIR ${SOURCE} DIRECTORY)
-    target_include_directories(${EXECUTABLE_NAME} PRIVATE ${DIR})
+    # 检查是否已经创建过同名的可执行文件
+    if (NOT EXECUTABLE_NAME IN_LIST EXECUTABLE_NAMES)
+        list(APPEND EXECUTABLE_NAMES ${EXECUTABLE_NAME})
 
-    # 检查并添加子目录中的 include 目录（如果存在）
-    if (EXISTS "${DIR}/include")
-        target_include_directories(${EXECUTABLE_NAME} PRIVATE ${DIR}/include)
+        # 创建可执行文件
+        add_executable(${EXECUTABLE_NAME} ${SOURCE})
+
+        # 查找源文件所在的目录，并添加为包含目录（头文件可能在同一目录下）
+        get_filename_component(DIR ${SOURCE} DIRECTORY)
+        target_include_directories(${EXECUTABLE_NAME} PRIVATE ${DIR})
+
+        # 检查并添加子目录中的 include 目录（如果存在）
+        if (EXISTS "${DIR}/include")
+            target_include_directories(${EXECUTABLE_NAME} PRIVATE ${DIR}/include)
+        endif ()
     endif ()
 endforeach ()
