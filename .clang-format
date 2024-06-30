@@ -1,56 +1,30 @@
-BasedOnStyle: LLVM
+BasedOnStyle: Google
 IndentWidth: 4
 UseTab: Never
 ColumnLimit: 0
 
 # 控制大括号的位置
-BraceWrapping:
-  AfterClass: false
-  AfterControlStatement: false
-  AfterEnum: false
-  AfterFunction: false
-  AfterNamespace: false
-  AfterStruct: false
-  AfterUnion: false
-  BeforeCatch: false
-  BeforeElse: false
-  IndentBraces: false
-
-# 控制不同情况下的大括号行为
-BreakBeforeBraces: Custom
-BreakBeforeBracesCustom:
-  BraceOnEnumDeclaration: false
-  BraceOnFunction: Attach
-  BraceOnNamespace: Attach
-  BraceOnObject: Attach
+BreakBeforeBraces: Attach
 
 # 控制空行的使用
 EmptyLineBeforeAccessModifier: Never
-KeepEmptyLinesAtTheStartOfBlocks: false
-KeepEmptyLinesAtTheStartOfFunctions: false
+KeepEmptyLinesAtTheStartOfBlocks: true
+
+# 控制短函数、短 if 语句和循环的格式
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
 
 # 控制其他格式选项
 AlignConsecutiveAssignments: true
 AlignConsecutiveDeclarations: true
-AllowShortFunctionsOnASingleLine: All
-AllowShortIfStatementsOnASingleLine: true
-AllowShortLoopsOnASingleLine: true
-AllowShortCaseLabelsOnASingleLine: true
 
 # 控制注释的格式化
-CommentPragmas: '^ IWYU pragma:'
 ReflowComments: true
 
 # 控制包含指令的格式化
 IncludeBlocks: Regroup
-SortIncludes: true
-IncludeCategories:
-  - Regex: '^<.*\.h>'
-    Priority: 1
-  - Regex: '^".*\.h"'
-    Priority: 2
-  - Regex: '.*'
-    Priority: 3
+SortIncludes: CaseInsensitive
 
 SpaceBeforeParens: ControlStatements
 SpacesInParentheses: false

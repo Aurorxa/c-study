@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.10)
 project(c-study VERSION 1.0 LANGUAGES C)
 
 # 设置 C 标准
-set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED True)
 
 # 辅助函数，用于递归查找所有源文件
@@ -32,7 +32,8 @@ foreach (SOURCE ${SOURCES})
     string(REPLACE "." "_" EXECUTABLE_NAME ${EXECUTABLE_NAME})
 
     # 创建可执行文件
-    add_executable(${EXECUTABLE_NAME} ${SOURCE})
+    add_executable(${EXECUTABLE_NAME} ${SOURCE}
+            src/day01/HelloWorld.c)
 
     # 查找源文件所在的目录，并添加为包含目录（头文件可能在同一目录下）
     get_filename_component(DIR ${SOURCE} DIRECTORY)
