@@ -32,8 +32,7 @@ foreach (SOURCE ${SOURCES})
     string(REPLACE "." "_" EXECUTABLE_NAME ${EXECUTABLE_NAME})
 
     # 创建可执行文件
-    add_executable(${EXECUTABLE_NAME} ${SOURCE}
-            src/day01/HelloWorld.c)
+    add_executable(${EXECUTABLE_NAME} ${SOURCE})
 
     # 查找源文件所在的目录，并添加为包含目录（头文件可能在同一目录下）
     get_filename_component(DIR ${SOURCE} DIRECTORY)
