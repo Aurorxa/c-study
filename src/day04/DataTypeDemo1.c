@@ -19,13 +19,13 @@ int main() {
     long          c1 = 1000L;
     signed long   c2 = -1000L;
     unsigned long c3 = 1000LU;
-    printf("b1 = %ld , b2 = %ld , b3 = %ld \n", c1, c2, c3);
+    printf("b1 = %ld , b2 = %ld , b3 = %lu \n", c1, c2, c3);
 
     // 长长整型
     long long          d1 = 10000LL;
     signed long long   d2 = -10000LL;
     unsigned long long d3 = 10000LLU;
-    printf("d1 = %lld , d2 = %lld , d3 = %lld \n", d1, d2, d3);
+    printf("d1 = %lld , d2 = %lld , d3 = %llu \n", d1, d2, d3);
 
     return 0;
 }
