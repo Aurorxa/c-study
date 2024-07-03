@@ -7,7 +7,7 @@ int main() {
     signed short   a2 = -10;
     unsigned short a3 = 20;
 
-    printf("a1 = %hd , a2 = %hd , a3 = %hd \n", a1, a2, a3);
+    printf("a1 = %hd , a2 = %hd , a3 = %hu \n", a1, a2, a3);
 
     // 整型
     int          b1 = 100;
