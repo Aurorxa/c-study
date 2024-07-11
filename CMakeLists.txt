@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.10)
 project(c-study VERSION 1.0 LANGUAGES C)
 
 # 设置 C 标准
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 23)
 set(CMAKE_C_STANDARD_REQUIRED True)
 
 # 辅助函数，用于递归查找所有源文件
