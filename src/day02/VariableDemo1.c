@@ -1,14 +1,14 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main() {
 
-    // 声明一个整型变量，取名为 a
-    int a;
+    // 定义变量，并进行初始化
+    int num = 18;
 
-    // 给变量赋值
-    a = 10;
+    // 输出变量
+    printf("我今年%d岁\n", num);
 
-    printf("a = %d\n", a);
-
+    system("pause");
     return 0;
 }
