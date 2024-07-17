@@ -3,8 +3,8 @@
 
 int main() {
 
-    printf("short 类型的范围是[%hd,%hd]\n", SHRT_MIN,SHRT_MAX);
-    printf("unsigned short 类型的范围是[0,%hu]\n", USHRT_MAX);
+    printf("unsigned short 类型的范围是[0,%hu]\n", USHRT_MAX); // 65535
+    printf("short 类型的范围是[%hd,%hd]\n", SHRT_MIN,SHRT_MAX); // -32768 ~ 32767
 
     return 0;
 }

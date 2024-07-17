@@ -2,18 +2,14 @@
 
 int main() {
 
-    // 定义有符号 short 类型
-    signed short s1 = -100;
+    size_t s1 = sizeof(unsigned short);
+    printf("unsigned short 的存储空间是 %zu 字节 \n", s1); // 2
 
-    printf("%zd\n", sizeof(s1));
+    size_t s2 = sizeof(signed short);
+    printf("signed short 的存储空间是 %zu 字节 \n", s2); // 2
 
-    // 定义无符号 short 类型
-    unsigned short s2 = 100;
-    printf("%zd\n", sizeof(s2));
-
-    // 定义 short 类型，默认是有符号
-    short s3 = -200;
-    printf("%zd\n", sizeof(s3));
+    size_t s3 = sizeof(short);
+    printf("short 的存储空间是 %zu 字节 \n", s3); // 2
 
     return 0;
 }
