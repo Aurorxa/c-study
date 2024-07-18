@@ -3,8 +3,8 @@
 
 int main() {
 
-    _Bool handsome = 0;
-    printf("帅不帅[0 丑，1 帅]： ");
+    bool handsome = false;
+    printf("帅不帅[false 丑，true 帅]： ");
     scanf("%d", &handsome);
 
     if (handsome) {
