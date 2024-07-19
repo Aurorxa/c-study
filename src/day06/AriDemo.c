@@ -2,14 +2,14 @@
 
 int main() {
 
-    int a = 5;
-    int b = 2;
+    int x  = 12;
+    int x1 = -x, x2 = +x;
 
-    printf("%d + %d = %d\n", a, b, a + b); // 5 + 2 = 7
-    printf("%d - %d = %d\n", a, b, a - b); // 5 - 2 = 3
-    printf("%d × %d = %d\n", a, b, a * b); // 5 × 2 = 10
-    printf("%d / %d = %d\n", a, b, a / b); // 5 / 2 = 2
-    printf("%d %% %d = %d\n", a, b, a % b); // 5 % 2 = 1
+    int y  = -67;
+    int y1 = -y, y2 = +y;
+
+    printf("x1=%d, x2=%d \n", x1, x2); // x1=-12, x2=12
+    printf("y1=%d, y2=%d \n", y1, y2); // y1=67, y2=-67
 
     return 0;
 }
