@@ -14,7 +14,7 @@ int main() {
 
     // 遍历数组
     for (int i = 0; i < 3; i++) {
-        printf("第 %d 个元素的值：%d \n", i, arr[i]);
+        printf("第 %d 个元素的值 = %d \n", i, arr[i]);
     }
 
     // 计算数组的长度
@@ -23,7 +23,7 @@ int main() {
 
     // 遍历数组
     for (int i = 0; i < length; i++) {
-        printf("第 %d 个元素的值：%d \n", i, arr[i]);
+        printf("第 %d 个元素的值 = %d \n", i, arr[i]);
     }
 
     return 0;
