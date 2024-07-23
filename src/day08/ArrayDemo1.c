@@ -17,5 +17,7 @@ int main() {
         printf("第 %d 个元素的值：%d \n", i, arr[i]);
     }
 
+    printf("数组的长度 = %zu \n", sizeof(arr) / sizeof(int));
+
     return 0;
 }
