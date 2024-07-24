@@ -12,19 +12,5 @@ int main() {
     arr[1] = 20;
     arr[2] = 30;
 
-    // 遍历数组
-    for (int i = 0; i < 3; i++) {
-        printf("第 %d 个元素的值 = %d \n", i, arr[i]);
-    }
-
-    // 计算数组的长度
-    size_t length = sizeof(arr) / sizeof(int);
-    printf("数组的长度 = %zu \n", sizeof(arr) / sizeof(int));
-
-    // 遍历数组
-    for (int i = 0; i < length; i++) {
-        printf("第 %d 个元素的值 = %d \n", i, arr[i]);
-    }
-
     return 0;
 }
