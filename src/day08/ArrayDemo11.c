@@ -13,9 +13,11 @@ int main() {
         arr[i] = i;
     }
 
+    printf("数组的地址是 = %p\n", arr);
+
     // 遍历数组
     for (int i = 0; i < length; i++) {
-        printf("%d\n", arr[i]);
+        printf("数组元素 %d 的地址是 = %p\n", arr[i], &arr[i]);
     }
 
     return 0;
