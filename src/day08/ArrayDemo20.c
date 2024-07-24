@@ -17,7 +17,7 @@ int main() {
 
     // 冒泡排序
     for (int j = 0; j < length - 1; j++) {
-        for (int i = 0; i < length - 1 - i; i++) {
+        for (int i = 0; i < length - 1 - j; i++) {
             if (arr[i] > arr[i + 1]) {
                 int temp   = arr[i];
                 arr[i]     = arr[i + 1];
