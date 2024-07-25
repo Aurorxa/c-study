@@ -5,7 +5,7 @@ void demo(int num) {
 }
 
 void demo2(int num[]) {
-    printf("数组的长度2 = %zu\n", sizeof(num));
+    // printf("数组的长度2 = %zu\n", sizeof(num)); // 错误
 }
 
 int main() {
