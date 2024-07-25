@@ -54,5 +54,11 @@ foreach (SOURCE ${SOURCES})
         if (EXISTS "${DIR}/include")
             target_include_directories(${EXECUTABLE_NAME} PRIVATE ${DIR}/include)
         endif ()
+
+        # 检查并添加 module 目录中的所有 C 文件（如果存在）
+        if (EXISTS "${DIR}/module")
+            file(GLOB_RECURSE MODULE_SOURCES "${DIR}/module/*.c")
+            target_sources(${EXECUTABLE_NAME} PRIVATE ${MODULE_SOURCES})
+        endif ()
     endif ()
 endforeach ()
