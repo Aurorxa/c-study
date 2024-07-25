@@ -1,9 +1,13 @@
 #include <stdio.h>
 
+void demo(int num) {
+    printf("The number is: %d\n", num);
+}
+
 int main() {
 
-    char chs[] = "hello world";
-    printf("%s\n", chs);
+    int num = 10;
+    demo(num);
 
     return 0;
 }
