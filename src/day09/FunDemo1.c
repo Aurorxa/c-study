@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 void demo(int num) {
-    printf("The number is: %d\n", num);
+    printf("num = %d\n", num);
 }
 
 int main() {
