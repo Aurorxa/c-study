@@ -14,5 +14,7 @@ int main() {
     ptr = &num;
     printf("ptr = %p \n", ptr);
 
+    printf("num = %d \n", *ptr);
+
     return 0;
 }
