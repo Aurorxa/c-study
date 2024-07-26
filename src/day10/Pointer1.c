@@ -1,8 +1,9 @@
 #include <stdio.h>
 
 int main() {
+
     // 定义一个整型指针
-    int* ptr;
+    int *ptr;
     // 定义一个整型变量
     int num = 10;
     printf("num = %d\n", num);
