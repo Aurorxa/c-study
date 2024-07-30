@@ -8,16 +8,9 @@ int main() {
 
     int size = sizeof(arr) / sizeof(arr[0]);
 
-    // 传统直接遍历的方式
-    for (int i = 0; i < size; ++i) {
-        printf("%d ", arr[i]);
-    }
-
-    printf("\n");
-
     // 指针遍历的方式
-    for (int i = 0, *p = arr; i < size; ++i) {
-        printf("%d ", *(p + i));
+    for (int *p = arr; p < arr + size; p++) {
+        printf("%d ", *p);
     }
 
     return 0;
