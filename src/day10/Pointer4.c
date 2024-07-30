@@ -2,7 +2,7 @@
 
 int main() {
     // 禁用 stdout 缓冲区
-//    setbuf(stdout, NULL);
+    setbuf(stdout, NULL);
 
     int  num = 10;
     int *ptr = &num;
