@@ -2,19 +2,9 @@
 
 int main() {
 
-    // 定义一个整型变量
     int num = 10;
-    printf("num = %d \n", num);
-    printf("&num = %p \n", &num);
-
-    // 定义一个整型指针
-    int *ptr = NULL;
-
-    // 将 num 的地址赋值给 ptr
-    ptr = &num;
-    printf("ptr = %p \n", ptr);
-
-    printf("num = %d \n", *ptr);
+    printf("num 变量中的值是：%d\n", num); // num 变量中的值是：10
+    printf("num 变量的内存地址是：%p\n", &num); // num 变量的内存地址是：0x7ffc2045c1cc
 
     return 0;
 }

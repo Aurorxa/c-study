@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.22.1)
 
 # 项目名称和版本号
 project(c-study VERSION 1.0 LANGUAGES C)

@@ -1,10 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-
 
 int main() {
-
     char chs;
     printf("请输入一个字符（a、b、c、d）：");
     scanf("%c", &chs);
