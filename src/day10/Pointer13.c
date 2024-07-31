@@ -13,9 +13,9 @@ int main() {
 
     char c = 'A';
     printf("c = %c \n", c);
-    
+
     char *pc = &c;
     printf("pc = %p \n", pc);
-
+    
     return 0;
 }
