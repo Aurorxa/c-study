@@ -16,6 +16,6 @@ int main() {
 
     char *pc = &c;
     printf("pc = %p \n", pc);
-    
+
     return 0;
 }
