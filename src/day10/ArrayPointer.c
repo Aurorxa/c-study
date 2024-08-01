@@ -1,16 +1,15 @@
-#include <stddef.h>
 #include <stdio.h>
 
 int main() {
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
-    int arr[] = {1, 2, 3, 4, 5};
+    char str[32];
 
-    printf("arr + 1 = %p\n", arr + 1);
-    printf("&arr + 1 = %p\n", &arr + 1);
+    printf("请输入字符串：");
+    scanf("%[^\n]", str);
 
-    printf("%d", arr == &arr);
+    printf("字符串是：%s\n", str);
 
     return 0;
 }
