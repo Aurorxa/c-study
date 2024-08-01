@@ -7,6 +7,8 @@ project(c-study VERSION 1.0 LANGUAGES C)
 set(CMAKE_C_STANDARD 23)
 set(CMAKE_C_STANDARD_REQUIRED True)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
+
 # 辅助函数，用于递归查找所有源文件
 function(collect_sources result dir)
     file(GLOB_RECURSE new_sources "${dir}/*.c")

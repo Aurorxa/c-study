@@ -7,10 +7,10 @@ int main() {
 
     int arr[] = {1, 2, 3, 4, 5};
 
-    int *p = arr;
+    printf("arr + 1 = %p\n", arr + 1);
+    printf("&arr + 1 = %p\n", &arr + 1);
 
-    printf("arr[0] = %d \n", arr[0]);
-    printf("p[0] = %d \n", p[0]);
+    printf("%d", arr == &arr);
 
     return 0;
 }
