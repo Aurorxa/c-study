@@ -9,5 +9,8 @@ int main() {
 
     printf("%p\n", &chs);
 
+    char c[] = "hello world";
+    printf("%s\n", c);
+
     return 0;
 }
