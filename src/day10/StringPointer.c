@@ -1,16 +1,13 @@
-#include <stddef.h>
 #include <stdio.h>
+#include <time.h>
 
 int main() {
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
-    char *chs = "Hello World";
+    int a = -10;
 
-    printf("%p\n", &chs);
-
-    char c[] = "hello world";
-    printf("%s\n", c);
+    time(NULL);
 
     return 0;
 }
