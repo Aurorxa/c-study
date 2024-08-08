@@ -29,5 +29,8 @@ int main() {
     void *p1 = ptr;
     void *p2 = ptr2;
 
+    // 缺点：void 类型的指针，无法获取变量里面的值，也不能进行加、减计算
+    //    printf("p1 = %d\n", *p1); // 错误
+
     return 0;
 }
