@@ -1,5 +1,13 @@
 #include <stdio.h>
 
+/**
+ * 二分查找
+ *
+ * @param arr 数组
+ * @param len 数组长度
+ * @param num 要查找的数据
+ * @return 返回数据的下标，没有找到返回-1
+ */
 int search(const int arr[], int len, int num) {
     int min = 0;
     int max = len - 1;
