@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int search(int arr[], int len, int num) {
+int search(const int arr[], int len, int num) {
     int min = 0;
     int max = len - 1;
     int mid = (min + max) / 2;
