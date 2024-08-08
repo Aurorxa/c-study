@@ -1,9 +1,14 @@
 #include <stdio.h>
 
-void swap(int *num1, int *num2) {
-    int *temp = num1;
-    num1      = num2;
-    num2      = temp;
+/**
+ * 交换 p1 和 p2 指向的变量的值
+ * @param p1
+ * @param p2
+ */
+void swap(int *p1, int *p2) {
+    int temp = *p1;
+    *p1      = *p2;
+    *p2      = temp;
 }
 /**
  * 定义两个变量，要求交换两个变量中记录的值
@@ -18,9 +23,10 @@ int main() {
     int num2 = 20;
 
     printf("调用前: num1 = %d, num2 = %d\n", num1, num2); // 调用前: num1 = 10, num2 = 20
+
     swap(&num1, &num2);
 
-    printf("调用后: num1 = %d, num2 = %d\n", num1, num2); // 调用后: num1 = 10, num2 = 20
+    printf("调用后: num1 = %d, num2 = %d\n", num1, num2); // 调用后: num1 = 20, num2 = 10
 
     return 0;
 }
