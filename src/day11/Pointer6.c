@@ -1,5 +1,11 @@
 #include <stdio.h>
-
+/**
+ * 定义一个函数，将两个数相除，求它们的余数
+ * @param num1 整数
+ * @param num2 整数
+ * @param res 余数
+ * @return true 成功，false 失败
+ */
 bool getMod(int num1, int num2, int *res) {
     if (num2 == 0) {
         return false;
@@ -24,7 +30,7 @@ int main() {
     bool ret = getMod(num1, num2, &res);
     if (ret) {
         printf("%d %% %d = %d\n", num1, num2, res);
-        
+
     } else {
         printf("除数不能为 0\n");
     }
