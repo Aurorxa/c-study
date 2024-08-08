@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /**
- * 定义一个函数，交换两个整数的值
+ * 定义一个函数，交换两个任意类型的值
  * @param p1
  * @param p2
  * @param 步长
