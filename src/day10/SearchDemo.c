@@ -4,7 +4,7 @@ int search(const int arr[], int len, int num) {
     int min = 0;
     int max = len - 1;
     int mid = (min + max) / 2;
-    while (min < max) {
+    while (min <= max) {
         if (arr[mid] > num) { // 说明要查找的数据在左半边
             max = mid - 1;
         } else if (arr[mid] < num) { // 说明要查找的数据在右半边
@@ -23,7 +23,7 @@ int main() {
 
     int len = sizeof(arr) / sizeof(arr[0]);
 
-    int index = search(arr, len, 5);
+    int index = search(arr, len, 6);
 
     printf("index = %d\n", index);
 
