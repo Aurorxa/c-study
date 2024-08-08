@@ -22,6 +22,7 @@ void swap(void *p1, void *p2, int len) {
         pc2++;
     }
 }
+
 /**
  * void 类型的指针变量
  *
