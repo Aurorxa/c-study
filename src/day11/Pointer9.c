@@ -6,7 +6,8 @@ int main() {
 
     // 定义数组
     int arr[] = {1, 2, 3, 4, 5, 6};
-    int len   = sizeof(arr) / sizeof(arr[0]);
+    // 获取数组长度
+    int len = sizeof(arr) / sizeof(arr[0]);
 
     // 获取数组的指针
     int *p = arr;
