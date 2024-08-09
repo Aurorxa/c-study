@@ -20,6 +20,7 @@ int main() {
     }
 
     // 使用指针的方式遍历数组
+    int(*p)[3] = arr;
 
     return 0;
 }
