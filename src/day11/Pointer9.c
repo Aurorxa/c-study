@@ -14,7 +14,8 @@ int main() {
 
     // 遍历数组
     for (int i = 0; i < len; i++) {
-        printf("%d ", *(p + i));
+        printf("%d ", *p);
+        p++;
     }
     return 0;
 }
