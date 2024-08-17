@@ -1,7 +1,9 @@
 #include <stdio.h>
 
 int main() {
-
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, NULL);
+    
     // 使用整型来表示真和假两种状态
     int handsome = 0;
     printf("帅不帅[0 丑，1 帅]： ");

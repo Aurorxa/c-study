@@ -5,7 +5,9 @@
 #define FALSE 0
 
 int main() {
-
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, NULL);
+    
     BOOL handsome = 0;
     printf("帅不帅[FALSE 丑，TRUE 帅]： ");
     scanf("%d", &handsome);
