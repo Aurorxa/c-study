@@ -1,20 +1,19 @@
-#include <locale.h>
-#include <stddef.h>
 #include <stdio.h>
-#include <wchar.h>
 
 int main() {
     // 禁用 stdout 缓冲区
-    setbuf(stdout, NULL);
+    setbuf(stdout, nullptr);
 
-    setlocale(LC_ALL, "");
+    // 定义字符串指针数组
+    char *strArr[] = {"Hello", "World"};
 
-    wchar_t t = L'中';
+    // 计算字符穿指针数组的长度
+    int len = sizeof(strArr) / sizeof(strArr[0]);
 
-    wchar_t t2 = L'国';
-
-    wprintf(L"%lc\n", t);
-    wprintf(L"%lc\n", t2);
+    // 打印字符串
+    for (int i = 0; i < len; i++) {
+        printf("%s\n", strArr[i]);
+    }
 
     return 0;
 }
