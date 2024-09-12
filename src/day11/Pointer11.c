@@ -10,7 +10,7 @@ int main() {
                      {9, 10, 11, 12}};
 
     printf("arr[0][0] = %d\n", arr[0][0]);   // arr[0][0] = 1
-    printf("&arr[0][0] = %p\n", &arr[0][0]); // &arr[0][0] = 0x7ffe4bd14720，获取 arr[0][0] 元素的地址
+    printf("&arr[0][0] = %p\n", &arr[0][0]); // &arr[0][0] = 0x7ffe4bd14720，获取 arr[0][0] 元素的值对应的地址
     printf("arr[0] = %p\n", arr[0]);         // arr[0] = 0x7ffe4bd14720，获取 arr[0][0] 的地址
     printf("arr = %p\n", arr);               // arr = 0x7ffe4bd14720，获取 arr[0] 的地址
     printf("&arr = %p\n", &arr);             // &arr = 0x7ffe4bd14720，获取二维数组 arr 的地址
