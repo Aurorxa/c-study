@@ -4,23 +4,20 @@ int main() {
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
-    int arr[][3] = {{1, 2, 3}, {2, 3, 4}, {3, 4, 5}};
+    // 定义一维数组
+    int arr[3] = {1, 2, 3};
 
-    // 获取数组的行数
-    int rows = sizeof(arr) / sizeof(arr[0]);
-    // 获取数组的列数
-    int cols = sizeof(arr[0]) / sizeof(int);
+    // 定义指针变量
+    int *p = arr;
 
-    // 传统的方式遍历数组
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            printf("%d ", arr[i][j]);
-        }
-        printf("\n");
-    }
+    printf("arr[0] 的地址为 %p\n", arr); // arr[0] 的地址为 0x7ffd580ed19c
+    printf("arr[0] 的地址为 %p\n", p);   // arr[0] 的地址为 0x7ffd580ed19c
 
-    // 使用指针的方式遍历数组
-    int(*p)[3] = arr;
+    printf("arr[1] 的地址为 %p\n", arr + 1); // arr[1] 的地址为 0x7ffd580ed1a0
+    printf("arr[1] 的地址为 %p\n", p + 1);   // arr[1] 的地址为 0x7ffd580ed1a0
+
+    printf("arr[2] 的地址为 %p\n", arr + 2); // arr[2] 的地址为 0x7ffd580ed1a4
+    printf("arr[2] 的地址为 %p\n", p + 2);   // arr[2] 的地址为 0x7ffd580ed1a4
 
     return 0;
 }
