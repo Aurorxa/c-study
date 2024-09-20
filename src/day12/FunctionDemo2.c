@@ -31,8 +31,7 @@ bool prime(int num) {
 bool guess(int num) {
     bool flag = false;
     for (int i = 2; i < num; ++i) {
-        int j = num - i;
-        if (prime(i) && prime(j)) {
+        if (prime(i) && prime(num - i)) {
             flag = true;
             break;
         }
