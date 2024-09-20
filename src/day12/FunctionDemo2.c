@@ -11,6 +11,7 @@ bool prime(int num) {
     if (num <= 1) {
         return false;
     }
+    
     // 判断 [2,num-1] 范围内没有其它约数
     // for (int i = 2; i < num; i++) {
     for (int i = 2; i <= sqrt(num); i++) {
@@ -30,6 +31,7 @@ bool prime(int num) {
  */
 bool guess(int num) {
     bool flag = false;
+
     for (int i = 2; i < num; ++i) {
         if (prime(i) && prime(num - i)) {
             flag = true;
