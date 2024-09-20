@@ -20,6 +20,16 @@ int max(int a, int b) {
     return a > b ? a : b;
 }
 
+/**
+ * 打印两个整数的最大值
+ * @param a 整数
+ * @param b 整数
+ */
+void printMax(int a, int b) {
+    int max = a > b ? a : b;
+    printf("max = %d\n", max);
+}
+
 int main() {
 
     int a = 10;
@@ -29,6 +39,8 @@ int main() {
     printf("a + b = %d\n", add(a, b));
 
     printf("a 和 b 的最大值 = %d\n", max(a, b));
+
+    printMax(a, b);
 
     return 0;
 }
