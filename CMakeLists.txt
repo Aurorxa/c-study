@@ -45,7 +45,8 @@ foreach (SOURCE ${SOURCES})
     # 检查是否已经创建过同名的可执行文件
     if (NOT EXECUTABLE_NAME IN_LIST EXECUTABLE_NAMES)
         list(APPEND EXECUTABLE_NAMES ${EXECUTABLE_NAME})
-
+        # 链接 math 库
+        LINK_LIBRARIES(m)
         # 创建可执行文件
         add_executable(${EXECUTABLE_NAME} ${SOURCE})
 
