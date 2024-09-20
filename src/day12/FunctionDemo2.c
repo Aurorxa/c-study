@@ -43,7 +43,7 @@ bool guess(int num) {
 int main() {
 
     // 禁用 stdout 缓冲区
-    setbuf(stdout, NULL);
+    setbuf(stdout, nullptr);
 
     int num = 0;
 
