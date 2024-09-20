@@ -11,7 +11,7 @@ bool prime(int num) {
     if (num <= 1) {
         return false;
     }
-    
+
     // 判断 [2,num-1] 范围内没有其它约数
     // for (int i = 2; i < num; i++) {
     for (int i = 2; i <= sqrt(num); i++) {
@@ -42,6 +42,8 @@ bool guess(int num) {
     return flag;
 }
 
+#define BOOL_TO_STRING(x) ((x) ? "true" : "false")
+
 int main() {
 
     // 禁用 stdout 缓冲区
@@ -57,7 +59,7 @@ int main() {
         scanf("%d", &num);
     }
 
-    printf("哥德巴赫猜想正确? %s\n", guess(num) ? "true" : "false");
+    printf("哥德巴赫猜想正确? %s\n", BOOL_TO_STRING(guess(num)));
 
     return 0;
 }
