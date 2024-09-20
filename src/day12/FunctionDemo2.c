@@ -23,14 +23,40 @@ bool prime(int num) {
     return true;
 }
 
+/**
+ * 哥德巴赫猜想：任何一个大于 2 的偶数都可以写成两个质数之和
+ * @param num
+ * @return
+ */
+bool guess(int num) {
+    bool flag = false;
+    for (int i = 2; i < num; ++i) {
+        int j = num - i;
+        if (prime(i) && prime(j)) {
+            flag = true;
+            break;
+        }
+    }
+
+    return flag;
+}
+
 int main() {
 
-    printf("%d\n", prime(2));
-    printf("%d\n", prime(3));
-    printf("%d\n", prime(4));
-    printf("%d\n", prime(5));
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, NULL);
 
-    printf("5 是质数? %s\n", prime(-2) ? "true" : "false");
+    int num = 0;
+
+    while (true) {
+        if (num > 2 && num % 2 == 0) {
+            break;
+        }
+        printf("请输入一个大于 2 的偶数：");
+        scanf("%d", &num);
+    }
+
+    printf("哥德巴赫猜想正确? %s\n", guess(num) ? "true" : "false");
 
     return 0;
 }
