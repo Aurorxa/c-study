@@ -1,4 +1,3 @@
 # c-study
-C 学习
 
-> 编辑器使用的是 vs code（Visual Studio Code），而不是 VS（Visual Studio）
+> 开发工具使用的是 CLion 作为 IDE，而不是 Visual Studio。
