@@ -35,10 +35,10 @@ int main() {
 
     while (count > 0) {
         char username[20] = {'\0'};
-        printf("请输入用户名:");
+        printf("请输入用户名：");
         scanf("%s", username);
         char password[20] = {'\0'};
-        printf("请输入密码:");
+        printf("请输入密码：");
         scanf("%s", password);
 
         if (equals(username, rightUsername) && equals(password, rightPassword)) {
