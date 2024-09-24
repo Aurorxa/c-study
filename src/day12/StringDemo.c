@@ -49,7 +49,7 @@ int main() {
         if (count > 0) {
             printf("登录失败，您还有 %d 次机会！\n", count);
         } else {
-            printf("登录次数过多,用户被锁定,请联系管理员!!!\n");
+            printf("登录次数过多,用户 %s 被锁定,请联系管理员!!!\n", username);
         }
     }
 
