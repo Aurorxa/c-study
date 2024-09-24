@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-bool equals(const char *str1, const char *str2) {
+bool equals(char *str1, char *str2) {
     // 1. 判断两个字符串是否为空
     if (str1 == nullptr || str2 == nullptr) {
         return false;
