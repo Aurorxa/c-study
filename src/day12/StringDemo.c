@@ -42,20 +42,15 @@ int main() {
         scanf("%s", password);
 
         if (equals(username, rightUsername) && equals(password, rightPassword)) {
+            printf("登录成功！\n");
             break;
         }
-
         count--;
-
         if (count > 0) {
             printf("登录失败，您还有 %d 次机会！\n", count);
+        } else {
+            printf("登录次数过多,用户被锁定,请联系管理员!!!\n");
         }
-    }
-
-    if (count == 0) {
-        printf("登录失败，您的账号已被锁定！\n");
-    } else {
-        printf("登录成功！\n");
     }
 
     return 0;
