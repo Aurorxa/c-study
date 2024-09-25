@@ -17,11 +17,10 @@ bool equals(char *str1, char *str2) {
 
     return true;
 }
-
-/*
+/**
  * 已知正确的用户名和密码，需要用程序模拟用户登录。
  * 总共给 3 次机会，登录之后，给出相应的提示！！！
- * */
+ */
 int main() {
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
