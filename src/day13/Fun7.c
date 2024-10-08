@@ -21,7 +21,10 @@ int pMax(int rows, int cols, int arr[rows][cols]) {
 
 int main() {
     // 定义二维数组
-    int arr[3][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
+    int arr[3][4] = {
+        {1, 2, 3, 4},
+        {5, 6, 7, 8},
+        {9, 10, 11, 12}};
 
     // 获取数组的行和列
     int rows = sizeof(arr) / sizeof(arr[0]);
