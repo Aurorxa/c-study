@@ -31,3 +31,6 @@ SpacesInParentheses: false
 SpacesInAngles: false
 SpacesInContainerLiterals: false
 SpacesInCStyleCastParentheses: false
+
+# 控制 switch-case 格式
+IndentCaseLabels: true
