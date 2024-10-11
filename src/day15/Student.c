@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 /**
  * 声明学生的结构体
  */
@@ -15,15 +16,28 @@ int main() {
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
 
-    // 定义学生结构体的变量并进行初始化
-    struct Student student = {10001, "张三", 'M', 20, "北京市海淀区"};
+    // 定义结构体数组变量并赋值
+    struct Student stuArr[5] = {
+        {.id = 1000, .name = "张三", .age = 18, .gender = 'M', .address = "北京"},
+        {.id = 1001, .name = "李四", .age = 19, .gender = 'M', .address = "上海"},
+        {.id = 1002, .name = "王五", .age = 20, .gender = 'F', .address = "天津"},
+        {.id = 1003, .name = "赵六", .age = 21, .gender = 'F', .address = "石家庄"},
+        {.id = 1004, .name = "田七", .age = 22, .gender = 'F', .address = "河南"},
+    };
 
-    // 输出结构体变量中成员的值
-    printf("学号: %d\n", student.id);      // 学号: 10001
-    printf("姓名: %s\n", student.name);    // 姓名: 张三
-    printf("性别: %c\n", student.gender);  // 性别: M
-    printf("年龄: %d\n", student.age);     // 年龄: 20
-    printf("地址: %s\n", student.address); // 地址: 北京市海淀区
+    // 计算数组的长度
+    int len = sizeof(stuArr) / sizeof(stuArr[0]);
+
+    // 遍历结构体数组中的成员
+    struct Student *p = stuArr;
+    for (int i = 0; i < len; i++, p++) {
+        printf("学号：%d\n", p->id);
+        printf("姓名：%s\n", p->name);
+        printf("性别：%c\n", p->gender);
+        printf("年龄：%d\n", p->age);
+        printf("地址：%s\n", p->address);
+        printf("\n");
+    }
 
     return 0;
 }
