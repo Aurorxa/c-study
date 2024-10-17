@@ -17,6 +17,9 @@ int factorial(int n) {
 
 int main() {
 
+    // 禁用 stdout 缓冲区
+    setbuf(stdout, nullptr);
+
     int n = 5;
 
     printf("%d 的阶乘是 %d\n", n, factorial(n)); // 5 的阶乘是 120
