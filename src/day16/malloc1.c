@@ -1,30 +1,17 @@
-#include <malloc.h>
 #include <stdio.h>
-#include <string.h>
 
-#define ARR_LEN 10
 int main() {
 
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
 
-    int *arr = (int *)malloc(ARR_LEN * sizeof(int));
-    if (arr == nullptr) {
-        printf("malloc failed\n");
-        return -1;
-    }
+    int arr[] = {1, 2, 3};
 
-    //    for (int i = 0; i < ARR_LEN; ++i) {
-    //        arr[i] = i;
-    //    }
-
-    memset(arr, 0, ARR_LEN * sizeof(int));
-
-    for (int i = 0; i < ARR_LEN; ++i) {
-        printf("%d ", arr[i]);
-    }
-
-    free(arr);
+    printf("arr 的首地址是: %p \n", arr);      // arr 的首地址是: 0x7ffd6c7be5fc
+    printf("arr 的首地址是: %p \n", &arr);     // &arr 的地址是: 0x7ffd6c7be5fc
+    printf("arr[0] 的地址是: %p \n", &arr[0]); // arr[0] 的地址是: 0x7ffd6c7be5fc
+    printf("arr[1] 的地址是: %p \n", &arr[1]); // arr[1] 的地址是: 0x7ffd6c7be600
+    printf("arr[2] 的地址是: %p \n", &arr[2]); // arr[2] 的地址是: 0x7ffd6c7be604
 
     return 0;
 }
