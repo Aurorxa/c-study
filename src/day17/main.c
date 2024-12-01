@@ -1,21 +1,23 @@
+#include "vector.h"
+
 #include <stdio.h>
 
-int *test() {
-
-    static int num = 10;
-
-    // 在函数中不要返回指向当前栈帧的指针！！！
-    return &num;
-}
+#define LEN 100
 
 int main() {
 
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
 
-    int *p = test();
+    const auto vector = vector_create();
 
-    printf("num = %d\n", *p);
+    for (int i = 0; i < LEN; i++) {
+        push_back(vector, i);
+    }
+
+    printf("size: %zu\n", vector_size(vector));
+
+    vector_destroy(vector);
 
     return 0;
 }

@@ -3,23 +3,33 @@
 
 #include <stddef.h>
 
-// ElementType 类型定义
-typedef int ElementType;
+typedef int E;
 
-// Vector 结构体定义
-typedef struct Vector {
-    // ElementType 类型定义
-    ElementType *data;
-    // 当前已存储的元素数量
-    size_t size;
-    // 数组的最大容量
+typedef struct {
+    // 元素
+    E *elements;
+    // 数组容量，即：数组中可以存放元素个数
     size_t capacity;
+    // 实际需要存放的元素个数
+    size_t size;
 } Vector;
 
-// 创建 Vector
-Vector *createVector(size_t init_capacity);
+// 初始化
+Vector *vector_create();
 
-// 销毁 Vector
-void destroyVector(Vector *vector);
+// 销毁
+void vector_destroy(Vector *vector);
+
+// 在末尾添加元素
+void push_back(Vector *vector, E element);
+
+// 获取元素个数
+size_t vector_size(const Vector *vector);
+
+// 获取容量
+size_t vector_capacity(const Vector *vector);
+
+// 判断是否为空
+bool vector_empty(const Vector *vector);
 
 #endif // C_STUDY_VECTOR_H

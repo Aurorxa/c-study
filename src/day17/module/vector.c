@@ -1,20 +1,68 @@
 #include "./include/vector.h"
 
-#include <malloc.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-// 创建 Vector
-Vector *createVector(size_t init_capacity) {
-    Vector *vector   = malloc(sizeof(Vector));
-    vector->data     = (int *)malloc(init_capacity * sizeof(int));
-    vector->size     = 0;
-    vector->capacity = init_capacity;
+#define DEFAULT_CAPACITY 8
+#define THRESHOLD 1024
+#define FACTOR 1.5
+Vector *vector_create() {
+    Vector *vector = (Vector *)malloc(sizeof(Vector));
+    if (vector == NULL) {
+        printf("ERROR：malloc vector failed\n");
+        exit(1);
+    }
+
+    E *elements = (int *)malloc(sizeof(E) * DEFAULT_CAPACITY);
+    if (elements == NULL) {
+        free(vector);
+        printf("ERROR：malloc elements failed\n");
+        exit(1);
+    }
+
+    vector->elements = elements;
+    vector->capacity = DEFAULT_CAPACITY;
+    vector->size = 0;
+
     return vector;
 }
 
-// 销毁 Vector
-void destroyVector(Vector *vector) {
-    free(vector->data);
-    vector->data     = nullptr;
-    vector->size     = 0;
-    vector->capacity = 0;
+// 扩容
+void grow_capacity(Vector *vector) {
+    size_t new_capacity = (vector->capacity < THRESHOLD) ? (vector->capacity * 2) : (vector->capacity * FACTOR);
+    E *tmp = (E *)realloc(vector, sizeof(E) * new_capacity);
+    if (tmp == NULL) {
+        printf("ERROR：realloc failed in grow_capacity\n");
+        exit(1);
+    }
+    vector->elements = tmp;
+    vector->capacity = new_capacity;
+}
+
+void push_back(Vector *vector, E element) {
+    // 判断是否需要扩容
+    if (vector->size == vector->capacity) {
+        grow_capacity(vector);
+    }
+    // 添加元素
+    vector->elements[vector->size++] = element;
+}
+
+void vector_destroy(Vector *vector) {
+    if (vector != NULL) {
+        free(vector->elements);
+        free(vector);
+    }
+}
+
+size_t vector_size(const Vector *vector) {
+    return vector->size;
+}
+
+size_t vector_capacity(const Vector *vector) {
+    return vector->capacity;
+}
+
+bool vector_empty(const Vector *vector) {
+    return vector->size == 0;
 }
