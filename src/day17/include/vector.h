@@ -9,9 +9,9 @@ typedef struct {
     // 元素
     E *elements;
     // 数组容量，即：数组中可以存放元素个数
-    size_t capacity;
+    int capacity;
     // 实际需要存放的元素个数
-    size_t size;
+    int size;
 } Vector;
 
 // 初始化
@@ -24,10 +24,10 @@ void vector_destroy(Vector *vector);
 void push_back(Vector *vector, E element);
 
 // 获取元素个数
-size_t vector_size(const Vector *vector);
+int vector_size(const Vector *vector);
 
 // 获取容量
-size_t vector_capacity(const Vector *vector);
+int vector_capacity(const Vector *vector);
 
 // 判断是否为空
 bool vector_empty(const Vector *vector);

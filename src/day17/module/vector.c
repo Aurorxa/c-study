@@ -5,7 +5,6 @@
 
 #define DEFAULT_CAPACITY 8
 #define THRESHOLD 1024
-#define FACTOR 1.5
 Vector *vector_create() {
     Vector *vector = (Vector *)malloc(sizeof(Vector));
     if (vector == NULL) {
@@ -29,12 +28,19 @@ Vector *vector_create() {
 
 // 扩容
 void grow_capacity(Vector *vector) {
-    size_t new_capacity = (vector->capacity < THRESHOLD) ? (vector->capacity * 2) : (vector->capacity * FACTOR);
+    int new_capacity = 0;
+    if ((vector->capacity < THRESHOLD)) {
+        new_capacity = vector->capacity << 1;
+    } else {
+        new_capacity = vector->capacity + (vector->capacity >> 1);
+    }
+
     E *tmp = (E *)realloc(vector, sizeof(E) * new_capacity);
     if (tmp == NULL) {
         printf("ERROR：realloc failed in grow_capacity\n");
         exit(1);
     }
+
     vector->elements = tmp;
     vector->capacity = new_capacity;
 }
@@ -55,11 +61,11 @@ void vector_destroy(Vector *vector) {
     }
 }
 
-size_t vector_size(const Vector *vector) {
+int vector_size(const Vector *vector) {
     return vector->size;
 }
 
-size_t vector_capacity(const Vector *vector) {
+int vector_capacity(const Vector *vector) {
     return vector->capacity;
 }
 
