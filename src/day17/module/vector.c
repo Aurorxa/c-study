@@ -37,7 +37,7 @@ void grow_capacity(Vector *vector) {
 
     E *tmp = (E *)realloc(vector->elements, sizeof(E) * new_capacity);
     if (tmp == NULL) {
-        printf("ERROR：realloc failed in grow_capacity\n");
+        printf("ERROR：realloc failed in grow_capacity \n");
         exit(1);
     }
 
@@ -45,7 +45,7 @@ void grow_capacity(Vector *vector) {
     vector->capacity = new_capacity;
 }
 
-void push_back(Vector *vector, E element) {
+void push_back(Vector *vector, const E element) {
     // 判断是否需要扩容
     if (vector->size == vector->capacity) {
         grow_capacity(vector);
