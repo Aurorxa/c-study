@@ -5,6 +5,7 @@
 
 #define DEFAULT_CAPACITY 8
 #define THRESHOLD 1024
+
 Vector *vector_create() {
     Vector *vector = (Vector *)malloc(sizeof(Vector));
     if (vector == NULL) {
