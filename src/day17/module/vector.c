@@ -67,10 +67,6 @@ int vector_size(const Vector *vector) {
     return vector->size;
 }
 
-int vector_capacity(const Vector *vector) {
-    return vector->capacity;
-}
-
 bool vector_empty(const Vector *vector) {
     return vector->size == 0;
 }

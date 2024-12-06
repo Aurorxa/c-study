@@ -26,9 +26,6 @@ void push_back(Vector *vector, E element);
 // 获取元素个数
 int vector_size(const Vector *vector);
 
-// 获取容量
-int vector_capacity(const Vector *vector);
-
 // 判断是否为空
 bool vector_empty(const Vector *vector);
 
