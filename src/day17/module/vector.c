@@ -29,6 +29,7 @@ Vector *vector_create() {
 
 // 扩容
 void grow_capacity(Vector *vector) {
+    // 计算新容量
     int new_capacity = 0;
     if (vector->capacity < THRESHOLD) {
         new_capacity = vector->capacity << 1;
@@ -36,6 +37,7 @@ void grow_capacity(Vector *vector) {
         new_capacity = vector->capacity + (vector->capacity >> 1);
     }
 
+    // 申请新内存，进行扩容
     E *tmp = (E *)realloc(vector->elements, sizeof(E) * new_capacity);
     if (tmp == NULL) {
         printf("ERROR：realloc failed in grow_capacity \n");
