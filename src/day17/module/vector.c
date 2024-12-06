@@ -52,8 +52,7 @@ void vector_push_back(Vector *vector, const E element) {
         grow_capacity(vector);
     }
     // 添加元素
-    vector->elements[vector->size] = element;
-    vector->size++;
+    vector->elements[vector->size++] = element;
 }
 
 void vector_destroy(Vector *vector) {
