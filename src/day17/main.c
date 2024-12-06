@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <time.h>
 
-#define LEN 1000
+#define LEN 20
 
 int main() {
 
@@ -15,7 +15,7 @@ int main() {
     const clock_t start = clock(); // 开始计时
 
     for (int i = 0; i < LEN; i++) {
-        vector_push_back(vector, i);
+        vector_push_back(vector, i + 1);
     }
 
     const clock_t end = clock(); // 结束计时
@@ -24,7 +24,10 @@ int main() {
 
     printf("方法执行时间: %f 秒\n", cpu_time_used);
 
-    printf("size: %d\n", vector_size(vector));
+    // 遍历动态数组
+    for (int i = 0; i < vector->size; i++) {
+        printf("%d ", vector->elements[i]);
+    }
 
     vector_destroy(vector);
 
