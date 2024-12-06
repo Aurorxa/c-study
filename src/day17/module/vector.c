@@ -46,7 +46,7 @@ void grow_capacity(Vector *vector) {
     vector->capacity = new_capacity;
 }
 
-void push_back(Vector *vector, const E element) {
+void vector_push_back(Vector *vector, const E element) {
     // 判断是否需要扩容
     if (vector->size == vector->capacity) {
         grow_capacity(vector);

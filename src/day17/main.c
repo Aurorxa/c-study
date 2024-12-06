@@ -14,7 +14,7 @@ int main() {
 
     const clock_t start = clock(); // 开始计时
     for (int i = 0; i < LEN; i++) {
-        push_back(vector, i);
+        vector_push_back(vector, i);
     }
     const clock_t end = clock(); // 结束计时
 

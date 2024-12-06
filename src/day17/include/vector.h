@@ -21,7 +21,7 @@ Vector *vector_create();
 void vector_destroy(Vector *vector);
 
 // 在末尾添加元素
-void push_back(Vector *vector, E element);
+void vector_push_back(Vector *vector, E element);
 
 // 获取元素个数
 int vector_size(const Vector *vector);
