@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-#define LEN 100
+#define LEN 10
 
 int main() {
 
@@ -15,7 +15,7 @@ int main() {
         push_back(vector, i);
     }
 
-    printf("size: %zu\n", vector_size(vector));
+    printf("size: %d\n", vector_size(vector));
 
     vector_destroy(vector);
 

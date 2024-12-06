@@ -29,13 +29,13 @@ Vector *vector_create() {
 // 扩容
 void grow_capacity(Vector *vector) {
     int new_capacity = 0;
-    if ((vector->capacity < THRESHOLD)) {
+    if (vector->capacity < THRESHOLD) {
         new_capacity = vector->capacity << 1;
     } else {
         new_capacity = vector->capacity + (vector->capacity >> 1);
     }
 
-    E *tmp = (E *)realloc(vector, sizeof(E) * new_capacity);
+    E *tmp = (E *)realloc(vector->elements, sizeof(E) * new_capacity);
     if (tmp == NULL) {
         printf("ERROR：realloc failed in grow_capacity\n");
         exit(1);
@@ -51,7 +51,8 @@ void push_back(Vector *vector, E element) {
         grow_capacity(vector);
     }
     // 添加元素
-    vector->elements[vector->size++] = element;
+    vector->elements[vector->size] = element;
+    vector->size++;
 }
 
 void vector_destroy(Vector *vector) {
