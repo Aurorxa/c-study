@@ -1,5 +1,5 @@
-#ifndef C_STUDY_VECTOR_H
-#define C_STUDY_VECTOR_H
+#ifndef VECTOR_H
+#define VECTOR_H
 
 #include <stddef.h>
 
@@ -29,4 +29,4 @@ int vector_size(const Vector *vector);
 // 判断是否为空
 bool vector_empty(const Vector *vector);
 
-#endif // C_STUDY_VECTOR_H
+#endif // VECTOR_H
