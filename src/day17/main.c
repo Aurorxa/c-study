@@ -10,7 +10,7 @@ int main() {
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
 
-    const auto vector = vector_create();
+    const Vector *vector = vector_create();
 
     const clock_t start = clock(); // 开始计时
     for (int i = 0; i < LEN; i++) {
