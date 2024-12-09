@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <time.h>
 
-#define LEN 20
+#define LEN 40
 
 int main() {
 
@@ -20,7 +20,7 @@ int main() {
 
     const clock_t end = clock(); // 结束计时
 
-    double cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC;
+    double cpu_time_used = (double)(end - start) / CLOCKS_PER_SEC;
 
     printf("方法执行时间: %f 秒\n", cpu_time_used);
 
