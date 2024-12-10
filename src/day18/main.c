@@ -14,13 +14,25 @@ void reverse(int arr[], const int len) {
     }
 }
 
+/**
+ * 打印整数数组
+ *
+ * @param arr 需要打印的整数数组
+ * @param len 数组的长度
+ *
+ * 此函数通过遍历数组并以逗号分隔的方式打印数组中的元素
+ * 数组用方括号包围，最后一个元素后面没有逗号
+ */
 void printArray(int arr[], const int len) {
     printf("[");
     for (int i = 0; i < len; i++) {
+        // 判断是否为最后一个元素
         if (i == len - 1) {
+            // 是最后一个元素，打印元素并关闭数组括号
             printf("%d]\n", arr[i]);
             return;
         }
+        // 不是最后一个元素，打印元素并添加逗号分隔
         printf("%d, ", arr[i]);
     }
 }
