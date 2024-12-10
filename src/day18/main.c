@@ -1,6 +1,11 @@
 #include <stdio.h>
 #define ARR_SIZE(a) (sizeof(a) / sizeof(a[0]))
 
+/**
+ * 反转数组
+ * @param arr 数组
+ * @param len 长度
+ */
 void reverse(int arr[], const int len) {
     for (int start = 0, end = len - 1; start <= end; start++, end--) {
         const int temp = arr[start];
