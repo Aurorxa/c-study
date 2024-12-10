@@ -1,23 +1,36 @@
 #include <stdio.h>
-#include <stdlib.h>
+#define ARR_SIZE(a) (sizeof(a) / sizeof(a[0]))
 
-#define ARR_LEN 10
+void reverse(int arr[], const int len) {
+    for (int start = 0, end = len - 1; start <= end; start++, end--) {
+        const int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+    }
+}
+
+void printArray(int arr[], const int len) {
+    printf("[");
+    for (int i = 0; i < len; i++) {
+        if (i == len - 1) {
+            printf("%d]\n", arr[i]);
+            return;
+        }
+        printf("%d, ", arr[i]);
+    }
+}
+
 int main() {
 
     // 禁用 stdout 缓冲区
-    setbuf(stdout, nullptr);
+    setbuf(stdout, NULL);
 
-    int *arr = (int *)malloc(sizeof(int) * ARR_LEN);
+    // 定义普通数组
+    int arr[] = {1, 2, 3, 4, 5, 6};
 
-    for (int i = 0; i < ARR_LEN; i++) {
-        arr[i] = i + 1;
-    }
+    reverse(arr, ARR_SIZE(arr));
 
-    for (int i = 0; i < ARR_LEN; i++) {
-        printf("%d ", arr[i]);
-    }
-
-    free(arr);
+    printArray(arr, ARR_SIZE(arr));
 
     return 0;
 }
