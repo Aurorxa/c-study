@@ -25,7 +25,8 @@ size_t strlen2(const char *str) {
     while (*str != '\0') {
         str++;
     }
-    // 返回字符串长度
+    // 当循环结束时，str 指向字符串结束符，p 指向字符串首字符
+    // 返回字符串长度，即：指针相减
     return str - p;
 }
 
