@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 /**
  * 将一个字符串拷贝到另一个字符串中
