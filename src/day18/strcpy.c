@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 
 /**
  * 将一个字符串拷贝到另一个字符串中
@@ -8,7 +7,7 @@
  * @return
  */
 char *strcpy(char *dest, const char *src) {
-
+    const char *p = dest;
     while (*src != '\0') {
         *dest++ = *src;
         *src++;
@@ -16,7 +15,7 @@ char *strcpy(char *dest, const char *src) {
 
     *dest = '\0';
 
-    return dest;
+    return p;
 }
 
 int main() {
@@ -28,9 +27,15 @@ int main() {
 
     char dest[20];
 
+    char dest2[20];
+
     strcpy(dest, src);
 
-    printf("%s\n", dest);
+    printf("dest = %s\n", dest);
+
+    strcpy(dest2, strcpy(dest, src));
+
+    printf("dest2 = %s\n", dest2);
 
     return 0;
 }
