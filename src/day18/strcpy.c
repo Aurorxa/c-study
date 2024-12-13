@@ -23,6 +23,7 @@ int main() {
     setbuf(stdout, NULL);
 
     char src[] = "Hello World";
+
     char dest[20];
 
     strcpy(dest, src);
