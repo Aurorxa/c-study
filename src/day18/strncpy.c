@@ -1,41 +1,18 @@
 #include <stdio.h>
 
-/**
- * 将一个字符串拷贝到另一个字符串中
- * @param dest
- * @param src
- * @return
- */
-char *strcpy(char *dest, const char *src) {
-    char *p = dest;
-    while (*src != '\0') {
-        *dest++ = *src;
-        *src++;
-    }
-
-    *dest = '\0';
-
-    return p;
-}
-
+#define LEN 10
 int main() {
 
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
-    char src[] = "Hello World";
+    char str[LEN] = {'\0'};
 
-    char dest[20] = {};
+    printf("请输入字符串：");
 
-    char dest2[20] = {};
+    scanf("%9s", str); // [!code highlight]
 
-    strcpy(dest, src);
-
-    printf("dest = %s\n", dest);
-
-    strcpy(dest2, strcpy(dest, src));
-
-    printf("dest2 = %s\n", dest2);
+    printf("字符串是：%s\n", str);
 
     return 0;
 }

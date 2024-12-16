@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 /**
  * 获取字符串长度
@@ -6,6 +7,11 @@
  * @return
  */
 size_t strlen(const char *str) {
+    // 检查参数是否合法
+    if (str == NULL) {
+        exit(1);
+    }
+    // 计数法
     size_t len = 0;
     while (*str != '\0') {
         str++;
@@ -20,6 +26,10 @@ size_t strlen(const char *str) {
  * @return
  */
 size_t strlen2(const char *str) {
+    // 检查参数是否合法
+    if (str == NULL) {
+        exit(1);
+    }
     const char *p = str;
     // 循环结束条件是遇到字符串结束符
     while (*str != '\0') {
@@ -35,11 +45,8 @@ int main() {
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
-    char str[] = "Hello World";
-    printf("strlen(\"%s\") = %zu\n", str, strlen2(str));
-
-    char str2[] = "HelloWorld";
-    printf("strlen(\"%s\") = %zu\n", str2, strlen2(str2));
+    size_t len = strlen("abc");
+    printf("len = %zu\n", len); // len = 3
 
     return 0;
 }
