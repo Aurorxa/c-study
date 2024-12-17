@@ -25,9 +25,9 @@ int main() {
 
     char src[] = "Hello World";
 
-    char dest[20];
+    char dest[sizeof(src) + 1];
 
-    char dest2[20];
+    char dest2[sizeof(src) + 1];
 
     strcpy(dest, src);
 

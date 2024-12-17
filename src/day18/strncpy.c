@@ -1,18 +1,19 @@
 #include <stdio.h>
+#include <string.h>
 
-#define LEN 10
 int main() {
 
     // 禁用 stdout 缓冲区
     setbuf(stdout, NULL);
 
-    char str[LEN] = {'\0'};
+    char str[] = "hello";
 
-    printf("请输入字符串：");
+    char dest[sizeof(str) + 1];
 
-    scanf("%9s", str); // [!code highlight]
+    strncpy(dest, str, sizeof(dest) - 1);
+    dest[sizeof(dest) - 1] = '\0';
 
-    printf("字符串是：%s\n", str);
+    printf("dest = %s\n", dest);
 
     return 0;
 }
