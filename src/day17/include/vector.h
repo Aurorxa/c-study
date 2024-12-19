@@ -6,10 +6,10 @@ typedef int E;
 typedef struct {
     // 元素
     E *elements;
-    // 数组容量，即：数组中可以存放元素个数
-    int capacity;
     // 实际需要存放的元素个数
     int size;
+    // 数组容量，即：数组中可以存放元素个数
+    int capacity;
 } Vector;
 
 // 初始化
