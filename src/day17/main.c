@@ -10,7 +10,7 @@ int main() {
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
 
-    const Vector *vector = vector_create();
+    Vector *vector = vector_create();
 
     for (int i = 0; i < LEN; i++) {
         vector_push_back(vector, i + 1);
