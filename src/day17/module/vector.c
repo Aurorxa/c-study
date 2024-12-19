@@ -61,6 +61,7 @@ void vector_destroy(Vector *vector) {
     if (vector != NULL) {
         free(vector->elements);
         free(vector);
+        vector = NULL;
     }
 }
 
