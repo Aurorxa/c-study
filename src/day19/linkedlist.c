@@ -24,6 +24,7 @@ int main() {
     setbuf(stdout, nullptr);
 
     // list 是一个单链表，等于 NULL 就是空链表
+
     Node *list = NULL;
 
     list = insert_head(list, 5);
