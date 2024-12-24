@@ -36,19 +36,19 @@ int main() {
     print_arr(arr, LEN);
 
     // 缩容
-    int *tmp = (int *)realloc(arr, SMALL_SIZE * sizeof(int)); // [!code highlight]
+    int *tmp = (int *)realloc(arr, SMALL_SIZE * sizeof(int));
 
     // 检测分配是否成功
-    if (tmp == NULL) { // [!code highlight]
+    if (tmp == NULL) {
         printf("Failed to reallocate memory.\n");
         exit(1);
     }
 
     // 更新指针
-    arr = tmp; // [!code highlight]
+    arr = tmp;
 
     // 打印数组中的元素
-    print_arr(arr, SMALL_SIZE); // [!code highlight]
+    print_arr(arr, SMALL_SIZE);
 
     // 扩容
     tmp = (int *)realloc(arr, BIG_SIZE * sizeof(int));
