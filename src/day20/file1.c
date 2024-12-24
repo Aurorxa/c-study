@@ -6,20 +6,21 @@ int main() {
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
 
-    // 打开文件流
-    FILE *file = fopen("./file1.txt", "r");
+    // ① 打开文件流
+    FILE *file = fopen("/root/file1.txt", "r");
 
     if (file == NULL) {
-        perror("fopen");
+        fprintf(stderr, "Error: Failed to open file.\n");
         exit(EXIT_FAILURE);
     }
 
+    // ② 读写文件（统计、转换、加密、解密...）
     int chs;
     while ((chs = fgetc(file)) != EOF) {
         putchar(chs);
     }
 
-    // 关闭文件流
+    // ③ 关闭文件流
     fclose(file);
 
     return 0;
