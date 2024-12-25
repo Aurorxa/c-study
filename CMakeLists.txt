@@ -44,6 +44,31 @@ collect_sources(SOURCES ${CMAKE_SOURCE_DIR})
 # 用于存储已经处理过的可执行文件名，防止重复
 set(EXECUTABLE_NAMES)
 
+# 用于拷贝 resources 目录下的所有文件到可执行文件同一目录
+function(copy_resources executable_name source_dir)
+    if (EXISTS "${source_dir}")
+        # 查找 resources 目录中的所有文件
+        file(GLOB_RECURSE RESOURCE_FILES "${source_dir}/*")
+
+        # 遍历每个资源文件并添加拷贝命令
+        foreach (RESOURCE_FILE ${RESOURCE_FILES})
+            # 获取文件相对于 resources 目录的相对路径
+            file(RELATIVE_PATH REL_PATH ${source_dir} ${RESOURCE_FILE})
+
+            # 定义目标文件的路径（复制到可执行文件所在目录）
+            set(TARGET_FILE "$<TARGET_FILE_DIR:${executable_name}>/${REL_PATH}")
+
+            # 添加文件拷贝命令
+            add_custom_command(
+                    TARGET ${executable_name} POST_BUILD
+                    COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:${executable_name}>"
+                    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${RESOURCE_FILE}" "${TARGET_FILE}"
+                    COMMENT "Copying ${RESOURCE_FILE} to $<TARGET_FILE_DIR:${executable_name}>"
+            )
+        endforeach ()
+    endif ()
+endfunction()
+
 # 创建可执行文件
 foreach (SOURCE ${SOURCES})
     # 获取文件的相对路径
@@ -79,6 +104,11 @@ foreach (SOURCE ${SOURCES})
         if (EXISTS "${DIR}/module")
             file(GLOB_RECURSE MODULE_SOURCES "${DIR}/module/*.c")
             target_sources(${EXECUTABLE_NAME} PRIVATE ${MODULE_SOURCES})
+        endif ()
+
+        # 检查并拷贝 resources 目录下的所有文件到可执行文件同一目录
+        if (EXISTS "${DIR}/resources")
+            copy_resources(${EXECUTABLE_NAME} "${DIR}/resources")
         endif ()
     endif ()
 endforeach ()
