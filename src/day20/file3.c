@@ -24,11 +24,11 @@ int main() {
         }
     }
 
-    printf("文件复制成功！");
-
     // ③ 关闭文件流
     fclose(src);
     fclose(dest);
+
+    printf("文件复制成功！");
 
     return 0;
 }
