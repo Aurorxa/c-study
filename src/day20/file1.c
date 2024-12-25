@@ -14,11 +14,15 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
+    printf("文件指针位置 --> start ：%ld\n", ftell(file));
+
     // ② 读写文件（统计、转换、加密、解密...）
     int chs;
     while ((chs = fgetc(file)) != EOF) {
         putchar(chs);
     }
+
+    printf("文件指针位置 --> end  ：%ld\n", ftell(file));
 
     // ③ 关闭文件流
     fclose(file);
