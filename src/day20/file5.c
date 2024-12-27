@@ -14,7 +14,7 @@ int main() {
 
     if (src_file == NULL) {
         // fprintf(stderr, "error msg = %s", strerror(errno));
-        perror("Error: 找不多 西游记1 文件");
+        perror("Error: 找不到 西游记1 文件");
         exit(EXIT_FAILURE);
     }
 
