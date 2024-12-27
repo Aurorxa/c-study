@@ -1,5 +1,7 @@
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main() {
 
@@ -7,11 +9,11 @@ int main() {
     setbuf(stdout, nullptr);
 
     // ① 打开文件流
-    FILE *src_file = fopen("/root/西游记.txt", "r");
+    FILE *src_file = fopen("/root/西游记1.txt", "r");
     FILE *dest_file = fopen("/root/西游记2.txt", "w");
 
     if (src_file == NULL) {
-        fprintf(stderr, "Error: Failed to open file %s.\n", "西游记.txt");
+        fprintf(stderr, "error msg = %s", strerror(errno));
         exit(EXIT_FAILURE);
     }
 
