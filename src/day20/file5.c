@@ -13,7 +13,8 @@ int main() {
     FILE *dest_file = fopen("/root/西游记2.txt", "w");
 
     if (src_file == NULL) {
-        fprintf(stderr, "error msg = %s", strerror(errno));
+        // fprintf(stderr, "error msg = %s", strerror(errno));
+        perror("Error: 找不多 西游记1 文件");
         exit(EXIT_FAILURE);
     }
 
