@@ -20,7 +20,7 @@ Vector *vector_create() {
         exit(1);
     }
 
-    vector->elements = elements;
+    vector->data = elements;
     vector->capacity = DEFAULT_CAPACITY;
     vector->size = 0;
 
@@ -38,13 +38,13 @@ void grow_capacity(Vector *vector) {
     }
 
     // 申请新内存，进行扩容
-    E *tmp = (E *)realloc(vector->elements, sizeof(E) * new_capacity);
+    E *tmp = (E *)realloc(vector->data, sizeof(E) * new_capacity);
     if (tmp == NULL) {
         printf("ERROR：realloc failed in grow_capacity \n");
         exit(1);
     }
 
-    vector->elements = tmp;
+    vector->data = tmp;
     vector->capacity = new_capacity;
 }
 
@@ -54,12 +54,12 @@ void vector_push_back(Vector *vector, const E element) {
         grow_capacity(vector);
     }
     // 添加元素
-    vector->elements[vector->size++] = element;
+    vector->data[vector->size++] = element;
 }
 
 void vector_destroy(Vector *vector) {
     if (vector != NULL) {
-        free(vector->elements);
+        free(vector->data);
         free(vector);
         vector = NULL;
     }

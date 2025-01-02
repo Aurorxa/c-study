@@ -1,7 +1,6 @@
 #include "vector.h"
 
 #include <stdio.h>
-#include <time.h>
 
 #define LEN 10
 
@@ -18,7 +17,7 @@ int main() {
 
     // 遍历动态数组
     for (int i = 0; i < vector->size; i++) {
-        printf("%d ", vector->elements[i]);
+        printf("%d ", vector->data[i]);
     }
 
     vector_destroy(vector);
