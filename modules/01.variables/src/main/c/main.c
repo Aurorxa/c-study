@@ -51,5 +51,10 @@ int main() {
     printf("sizeof(num) = %zu\n", sizeof(num));
     printf("sizeof num = %zu\n", sizeof num);
 
+    PRINT_SEPARATOR();
+
+    size_t size = sizeof(int);
+    printf("size = %zu\n", size);
+
     return 0;
 }
