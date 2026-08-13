@@ -40,5 +40,16 @@ int main() {
     printf("long double size = %zu\n", sizeof(long double));
     printf("bool size = %zu\n", sizeof(bool));
 
+    PRINT_SEPARATOR();
+
+    /*
+     * sizeof 运算符的返回值是 size_t 类型，格式：
+     * sizeof(类型) 或 sizeof 表达式
+     */
+    int num = 10;
+    printf("sizeof(char) = %zu\n", sizeof(int));
+    printf("sizeof(num) = %zu\n", sizeof(num));
+    printf("sizeof num = %zu\n", sizeof num);
+
     return 0;
 }
