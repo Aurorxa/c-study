@@ -1,0 +1,105 @@
+BasedOnStyle: LLVM
+
+# ============================================================
+# Java 风格基础
+# ============================================================
+
+# 4 空格缩进
+IndentWidth: 4
+ContinuationIndentWidth: 4
+TabWidth: 4
+UseTab: Never
+
+# 不因为长度强制折行
+ColumnLimit: 0
+
+# ============================================================
+# 大括号：Java 风格
+# ============================================================
+
+# int main() {
+# if (...) {
+# } else {
+BreakBeforeBraces: Attach
+
+# ============================================================
+# 短语句
+# ============================================================
+
+# 允许空函数：
+#
+# void foo() {}
+AllowShortFunctionsOnASingleLine: Empty
+
+# 不允许：
+#
+# if (a) foo();
+AllowShortIfStatementsOnASingleLine: Never
+
+# 不允许：
+#
+# while (...) foo();
+AllowShortLoopsOnASingleLine: false
+
+AllowShortBlocksOnASingleLine: Never
+
+# ============================================================
+# 空行
+# ============================================================
+
+MaxEmptyLinesToKeep: 1
+
+KeepEmptyLines:
+  AtStartOfBlock: false
+  AtStartOfFile: false
+  AtEndOfFile: false
+
+# ============================================================
+# 空格：Java 风格
+# ============================================================
+
+# if (...) / for (...) / while (...)
+# 但是 printf(...)
+SpaceBeforeParens: ControlStatements
+
+SpacesInParens: Never
+SpacesInAngles: Never
+SpacesInContainerLiterals: false
+
+# ============================================================
+# 指针：保持 C 的惯用写法
+# ============================================================
+
+# char *name
+# char **argv
+DerivePointerAlignment: false
+PointerAlignment: Right
+
+# ============================================================
+# switch：Java 风格
+# ============================================================
+
+IndentCaseLabels: true
+
+# ============================================================
+# 对齐
+# ============================================================
+
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+
+# ============================================================
+# include
+# ============================================================
+
+IncludeBlocks: Regroup
+
+SortIncludes:
+  Enabled: true
+  IgnoreCase: true
+
+# ============================================================
+# 注释
+# ============================================================
+
+ReflowComments: Always
