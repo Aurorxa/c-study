@@ -3,6 +3,7 @@
 
 #define BOOL_STR(value) ((value) ? "true" : "false")
 
+/* 程序的入口 */
 int main() {
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
