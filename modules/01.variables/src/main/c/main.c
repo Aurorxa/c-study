@@ -31,6 +31,7 @@ int main() {
     printf("long long size = %zu\n", sizeof(long long));
     printf("float size = %zu\n", sizeof(float));
     printf("double size = %zu\n", sizeof(double));
+    printf("long double size = %zu\n", sizeof(long double));
     printf("bool size = %zu\n", sizeof(bool));
 
     return 0;
