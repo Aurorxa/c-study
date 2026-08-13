@@ -1,6 +1,9 @@
 #include <locale.h>
 #include <stdio.h>
 
+#define SEPARATOR "------------------------\n"
+#define PRINT_SEPARATOR() printf(SEPARATOR)
+
 int main() {
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
@@ -17,6 +20,18 @@ int main() {
      */
     char chs1 = 'a';
     printf("%c\n", chs1);
+
+    PRINT_SEPARATOR();
+
+    /* 数据类型的长度 */
+    printf("char size = %zu\n", sizeof(char));
+    printf("short size = %zu\n", sizeof(short));
+    printf("int size = %zu\n", sizeof(int));
+    printf("long size = %zu\n", sizeof(long));
+    printf("long long size = %zu\n", sizeof(long long));
+    printf("float size = %zu\n", sizeof(float));
+    printf("double size = %zu\n", sizeof(double));
+    printf("bool size = %zu\n", sizeof(bool));
 
     return 0;
 }
