@@ -17,5 +17,21 @@ int main() {
     printf("1 == 1 ? %s\n", BOOL_STR(1 == 1));
     printf("1 != 1 ? %s\n", BOOL_STR(1 != 1));
 
+    /*
+     * 占位符：
+     * %d ：整数
+     * %c ：字符
+     * %s ：字符串
+     * %f ：浮点数
+     * %e ：科学计数法
+     * %g ：%f 和 %e 的结合体
+     */
+    printf("%d\n", 1);
+    printf("%c\n", 'a');
+    printf("%s\n", "hello world");
+    printf("%f\n", 3.1415926);
+    printf("%e\n", 3.1415926);
+    printf("%g\n", 3.1415926);
+
     return 0;
 }
