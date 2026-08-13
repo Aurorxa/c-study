@@ -27,10 +27,16 @@ int main() {
     printf("char size = %zu\n", sizeof(char));
     printf("short size = %zu\n", sizeof(short));
     printf("int size = %zu\n", sizeof(int));
+    /*
+     * C 语言规定：sizeof(long) >= sizeof(int)
+     */
     printf("long size = %zu\n", sizeof(long));
     printf("long long size = %zu\n", sizeof(long long));
     printf("float size = %zu\n", sizeof(float));
     printf("double size = %zu\n", sizeof(double));
+    /*
+     * C 语言规定：sizeof(long double) >= sizeof(double)
+     */
     printf("long double size = %zu\n", sizeof(long double));
     printf("bool size = %zu\n", sizeof(bool));
 
