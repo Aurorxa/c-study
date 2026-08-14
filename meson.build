@@ -23,6 +23,12 @@ python = import('python').find_installation()
 
 project_root = meson.project_source_root()
 
+add_project_arguments(
+    '-include',
+    project_root / 'tools/c_study.h',
+    language : 'c',
+)
+
 discover_modules_script = (
     project_root / 'tools/discover_modules.py'
 )

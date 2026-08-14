@@ -1,5 +1,6 @@
 #include <locale.h>
 #include <stdio.h>
+#include "c_study.h"
 
 static void c_study_runtime_init() __attribute__((constructor));
 
@@ -10,4 +11,11 @@ static void c_study_runtime_init() {
     // UTF-8，在 Windows UCRT 下也会适配系统设置） 如果想显式强行开启 UTF-8，写
     // ".UTF-8" 或 "C.UTF-8" 在现代 Linux 和 Windows UCRT 下都是通用的
     setlocale(LC_ALL, ".UTF-8");
+}
+
+/**
+ * 打印 ------
+ */
+void print_separator() {
+    puts("------------------------");
 }
