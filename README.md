@@ -1,6 +1,13 @@
 前提条件：
 
-* [mise](https://mise.jdx.dev/)
+- [x] [mise](https://mise.jdx.dev/) ：开发环境统一工具。
+- [x] msys2 ：C 语言开发工具套件。
+- [x] scoop：win11 第三方包管理器。
+- [x] winget ：win11 默认的包管理器。
+
+
+
+msys2 安装 C 语言环境命令：
 
 ```bash [msys2 ucrt64]
 pacman -Syu --noconfirm
