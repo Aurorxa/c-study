@@ -31,6 +31,8 @@ collect_sources_script = (
     project_root / 'tools/collect_sources.py'
 )
 
+runtime_init_source = files('tools/runtime_init.c')
+
 # ------------------------------------------------------------
 # 自动发现 modules/*
 # ------------------------------------------------------------
@@ -61,7 +63,7 @@ foreach module : modules
 
     executable(
         module,
-        sources,
+        sources + runtime_init_source,
         include_directories : include_directories(
             module_root / 'src/main/headers',
             module_root / 'src/main/public',
