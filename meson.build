@@ -4,7 +4,7 @@ project('c-study', 'c',
         default_options : [
             'warning_level=3', # -Wall -Wextra -Wpedantic
             'c_std=c23', # C 语言标准
-            'werror=true', # warning 不作为编译错误
+            'werror=true', # warning 将提升为编译错误
             'b_ndebug=if-release', # Release 模式关闭 assert()
             # 以下参数对于 GCC 编译器无效，只针对 CLANG 编译器有效
             # 开启 AddressSanitizer 和 UndefinedBehaviorSanitizer
