@@ -18,7 +18,7 @@ int main() {
      */
     printf("%d\n", 10);
     printf("%c\n", 'a');
-    printf("%f\n", 3.1415926);
+    printf("%f\n", 3.14);
     printf("%s\n", "Hello, World");
 
     return 0;
