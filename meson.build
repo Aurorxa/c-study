@@ -1,7 +1,17 @@
 project('c-study', 'c',
         version : '1.0.0',
-        meson_version: '>=1.2.0',
-        default_options : ['warning_level=3', 'c_std=c2x'],
+        meson_version : '>=1.2.0',
+        default_options : [
+            'warning_level=3', # -Wall -Wextra -Wpedantic
+            'c_std=c23', # C 语言标准
+            'werror=true', # warning 不作为编译错误
+            'b_ndebug=if-release', # Release 模式关闭 assert()
+            # 以下参数对于 GCC 编译器无效，只针对 CLANG 编译器有效
+            # 开启 AddressSanitizer 和 UndefinedBehaviorSanitizer
+            # address 表示内存越界、use-after-free 等，undefined 表示未定义行为检查
+            # thread 表示线程安全检查，leak 表示内存泄漏检查，memory 表示未初始化内存读取
+            'b_sanitize=address,undefined',
+        ],
 )
 
 # ------------------------------------------------------------
@@ -28,7 +38,7 @@ modules = run_command(
     python,
     discover_modules_script,
     project_root / 'modules',
-    check: true,
+    check : true,
 ).stdout().splitlines()
 
 
@@ -45,13 +55,13 @@ foreach module : modules
         collect_sources_script,
         project_root,
         project_root / module_root,
-        check: true,
+        check : true,
     ).stdout().splitlines()
 
     executable(
         module,
         sources,
-        include_directories: include_directories(
+        include_directories : include_directories(
             module_root / 'src/main/headers',
             module_root / 'src/main/public',
         ),

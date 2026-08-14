@@ -9,7 +9,7 @@ int main() {
     // 如果想显式强行开启 UTF-8，写 ".UTF-8" 或 "C.UTF-8" 在现代 Linux 和 Windows UCRT 下都是通用的
     setlocale(LC_ALL, ".UTF-8");
 
-    printf("你好，世界\n");
+    int value = 10;
 
     return 0;
 }
