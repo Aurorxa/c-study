@@ -11,6 +11,9 @@ int main() {
      */
     printf("你好，世界\n");
 
+    // 打印分割线
+    print_separator();
+
     /*
      * printf 函数也可以打印其它的数据类型
      *
