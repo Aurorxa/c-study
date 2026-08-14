@@ -82,6 +82,14 @@ foreach module : modules
         endif
     endforeach
 
+    main_include_directories = []
+    foreach include_dir : ['headers', 'public']
+        include_path = module_root / 'src/main' / include_dir
+        if fs.is_dir(include_path)
+            main_include_directories += include_directories(include_path)
+        endif
+    endforeach
+
     main_resources = custom_target(
         module + '.main-resources',
         output : module + '.main-resources.stamp',
@@ -100,10 +108,7 @@ foreach module : modules
         module,
         main_sources + runtime_init_source,
         link_depends : main_resources,
-        include_directories : include_directories(
-            module_root / 'src/main/headers',
-            module_root / 'src/main/public',
-        ),
+        include_directories : main_include_directories,
     )
 
     test_entry = module_root / 'src/test/c/main.c'
@@ -132,16 +137,19 @@ foreach module : modules
             check : true,
         ).stdout().splitlines()
 
+        test_include_directories = main_include_directories
+        foreach include_dir : ['headers', 'public']
+            include_path = module_root / 'src/test' / include_dir
+            if fs.is_dir(include_path)
+                test_include_directories += include_directories(include_path)
+            endif
+        endforeach
+
         test_executable = executable(
             module + '.test',
             test_sources + reusable_main_sources + runtime_init_source,
             link_depends : [main_resources, test_resources],
-            include_directories : include_directories(
-                module_root / 'src/main/headers',
-                module_root / 'src/main/public',
-                module_root / 'src/test/headers',
-                module_root / 'src/test/public',
-            ),
+            include_directories : test_include_directories,
         )
 
         test(
