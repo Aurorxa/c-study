@@ -38,7 +38,6 @@ int main() {
      * \' 单引号
      * \" 双引号
      */
-
     printf("abc\ndef");
 
     printf_separator();
