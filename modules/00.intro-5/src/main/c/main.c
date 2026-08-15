@@ -14,7 +14,13 @@ int main() {
      */
     char *str = "abc"; // "abc\0"
     printf("%s\n", str);
-    printf("%zu\n", strlen(str));
+    printf("%zu\n", strlen(str)); // 3
+
+    // 字符串数组：可以放多个字符串，每个字符串以 '\0' 结尾
+    char chs1[] = {'a', 'b', 'c', '\0'};
+    char chs2[] = "abc";
+    printf("%s\n", chs1);
+    printf("%s\n", chs2);
 
     return 0;
 }
