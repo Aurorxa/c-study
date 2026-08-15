@@ -17,6 +17,6 @@ static void c_study_runtime_init() {
 /**
  * 打印分隔符
  */
-void print_separator() {
+void printf_separator() {
     printf("\n------------------------------------------------\n");
 }

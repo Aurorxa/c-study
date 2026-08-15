@@ -5,7 +5,7 @@ int main() {
     int sum = add(1, 2);
     printf("结果是: %d\n", sum);
 
-    print_separator();
+    printf_separator();
 
     return 0;
 }
