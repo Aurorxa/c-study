@@ -1,10 +1,42 @@
 # [tools] - 开发工具版本
 [tools]
-python = "latest"
+python = "3.13"
 
 # [tasks] - 项目任务
 
+[tasks.clean]
+description = "Remove the Meson build directory"
+run = "powershell -NoProfile -Command \"if (Test-Path -LiteralPath 'buildDir') { Remove-Item -LiteralPath 'buildDir' -Recurse -Force }\""
+
+[tasks.setup]
+description = "Configure the Meson build directory"
+run = "meson setup buildDir"
+
+[tasks.build]
+description = "Build all modules"
+depends = ["setup"]
+run = "meson compile -C buildDir"
+
+[tasks.test]
+description = "Run all tests"
+depends = ["build"]
+run = "meson test -C buildDir --print-errorlogs"
+
+[tasks.fresh]
+description = "Clean and configure a fresh Meson build directory"
+depends = ["clean"]
+run = "meson setup buildDir"
+
+[tasks.rebuild]
+description = "Clean, configure, and rebuild all modules"
+depends = ["fresh"]
+run = "meson compile -C buildDir"
+
+[tasks.reconfigure]
+description = "Reconfigure the existing Meson build directory"
+run = "meson setup --reconfigure buildDir"
+
 [tasks.watch]
 description = "Watch C source structure"
+depends = ["setup"]
 run = "python tools/watch_sources.py"
-

@@ -1,3 +1,5 @@
+#include "c_study.h"
+
 #include <stdio.h>
 #include <string.h>
 
@@ -31,7 +33,6 @@ int main() {
      * \r 回车符
      * \v 垂直制表符
      * \f 换页符
-     * \e 转义符
      * \0 空字符
      * \? 问号
      * \\ 反斜杠
@@ -61,9 +62,13 @@ int main() {
      *
      *  '\0' 表示空字符，即 '\0' 是字符串的结束符，用于标记字符串的结束。
      */
-    printf("%c\n", '\130');      // X
-    printf("%c\n", '\x30');      // 0
-    printf("%c %d", '\0', '\0'); // NUL 0 , 0 是 ASCII 码的值
+    printf("%c\n", '\130'); // X
+    printf("%c\n", '\x30'); // 0
+    // 方括号之间输出了 NUL，但 NUL 是不可见字符；其数值为 0
+    printf("NUL character: [%c], numeric value: %d\n", '\0', '\0');
+
+    printf("%s\n", "abc\0def");          // 只输出 abc
+    printf("%zu\n", strlen("abc\0def")); // 3
 
     return 0;
 }

@@ -88,6 +88,11 @@ IndentCaseLabels: true
 AlignConsecutiveAssignments: false
 AlignConsecutiveDeclarations: false
 
+# 对齐连续代码行末尾的注释；空行会分隔不同的对齐组
+AlignTrailingComments:
+  Kind: Always
+  OverEmptyLines: 0
+
 # ============================================================
 # include
 # ============================================================

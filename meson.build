@@ -23,12 +23,7 @@ python = import('python').find_installation()
 fs = import('fs')
 
 project_root = meson.project_source_root()
-
-add_project_arguments(
-    '-include',
-    project_root / 'tools/c_study.h',
-    language : 'c',
-)
+project_support_include = include_directories('tools')
 
 discover_modules_script = (
     project_root / 'tools/discover_modules.py'
@@ -82,7 +77,7 @@ foreach module : modules
         endif
     endforeach
 
-    main_include_directories = []
+    main_include_directories = [project_support_include]
     foreach include_dir : ['headers', 'public']
         include_path = module_root / 'src/main' / include_dir
         if fs.is_dir(include_path)
@@ -113,21 +108,21 @@ foreach module : modules
 
     test_entry = module_root / 'src/test/c/main.c'
 
-    test_resources = custom_target(
-        module + '.test-resources',
-        output : module + '.test-resources.stamp',
-        command : [
-            python,
-            copy_resources_script,
-            project_root / module_root / 'src/test/resources',
-            meson.project_build_root() / 'resources' / module / 'test',
-            '@OUTPUT@',
-        ],
-        build_always_stale : true,
-        build_by_default : true,
-    )
-
     if fs.exists(test_entry)
+        test_resources = custom_target(
+            module + '.test-resources',
+            output : module + '.test-resources.stamp',
+            command : [
+                python,
+                copy_resources_script,
+                project_root / module_root / 'src/test/resources',
+                meson.project_build_root() / 'resources' / module / 'test',
+                '@OUTPUT@',
+            ],
+            build_always_stale : true,
+            build_by_default : true,
+        )
+
         test_sources = run_command(
             python,
             collect_sources_script,

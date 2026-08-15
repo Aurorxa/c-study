@@ -1,3 +1,5 @@
+#include "c_study.h"
+
 #include <stdio.h>
 
 int main() {
