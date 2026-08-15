@@ -11,7 +11,7 @@ project('c-study', 'c',
             # address 表示内存越界、use-after-free 等，undefined 表示未定义行为检查
             # thread 表示线程安全检查，leak 表示内存泄漏检查，memory 表示未初始化内存读取
             #            'b_sanitize=address,undefined',
-            'b_sanitize=address,undefined',
+            #            'b_sanitize=address,undefined',
         ],
 )
 

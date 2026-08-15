@@ -1,6 +1,7 @@
+#include "c_study.h"
+
 #include <locale.h>
 #include <stdio.h>
-#include "c_study.h"
 
 static void c_study_runtime_init() __attribute__((constructor));
 
@@ -14,8 +15,8 @@ static void c_study_runtime_init() {
 }
 
 /**
- * 打印 ------
+ * 打印分隔符
  */
 void print_separator() {
-    puts("------------------------");
+    printf("\n------------------------------------------------\n");
 }

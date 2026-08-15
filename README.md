@@ -19,7 +19,7 @@ pacman -Syu base-devel --noconfirm # 安装开发工具包
 pacman -Syu mingw-w64-clang-x86_64-toolchain mingw-w64-clang-x86_64-meson mingw-w64-clang-x86_64-cmake --noconfirm
 ```
 
-## 多模块在 modules 目录下：
+## 多模块 的 demo 示例在 modules 目录下：
 
 ```text
 demo/                     # demo 示例模块
