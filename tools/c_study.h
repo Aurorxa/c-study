@@ -1,6 +1,6 @@
 #ifndef C_STUDY_H
 #define C_STUDY_H
 
-void printf_separator(void);
+void printf_separator();
 
 #endif
