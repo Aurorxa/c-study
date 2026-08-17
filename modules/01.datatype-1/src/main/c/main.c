@@ -1,8 +1,5 @@
 #include <stdio.h>
 
-#include "add.h"
-#include "c_study.h"
-
 int main() {
     /*
      * C 语言提供了丰富的数据类型来描述生活中的各种不同的数据，如：
