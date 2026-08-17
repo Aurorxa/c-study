@@ -76,6 +76,14 @@ conversion_warning_args = cc.get_supported_arguments([
 
 add_project_arguments(conversion_warning_args, language : 'c')
 
+# 严格检查 printf、scanf 等函数的格式字符串与参数类型。
+# 项目启用了 werror=true，因此格式不匹配会直接导致编译失败。
+format_warning_args = cc.get_supported_arguments([
+    '-Wformat=2',
+])
+
+add_project_arguments(format_warning_args, language : 'c')
+
 # ------------------------------------------------------------
 # 公共工具
 # ------------------------------------------------------------
