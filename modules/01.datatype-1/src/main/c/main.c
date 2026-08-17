@@ -1,7 +1,7 @@
-#include "c_study.h"
-
 #include <stdio.h>
+
 #include "add.h"
+#include "c_study.h"
 
 int main() {
     int sum = add(1, 2);
