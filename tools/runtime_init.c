@@ -8,8 +8,13 @@ static void c_study_runtime_init() __attribute__((constructor));
 static void c_study_runtime_init() {
     // 禁用 stdout 缓冲区
     setbuf(stdout, nullptr);
-    // 空字符串表示采用用户环境中配置的 locale；失败时保留 C locale。
-    if (setlocale(LC_ALL, ".UTF-8") == nullptr) {
+    // Windows 使用 UTF-8 locale 名称；其他平台采用用户环境中的 locale。
+#ifdef _WIN32
+    const char *locale_name = ".UTF-8";
+#else
+    const char *locale_name = "";
+#endif
+    if (setlocale(LC_ALL, locale_name) == nullptr) {
         fputs("warning: failed to configure the user locale\n", stderr);
     }
 }

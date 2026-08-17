@@ -1,6 +1,6 @@
 project('c-study', 'c',
         version : '1.0.0',
-        meson_version : '>=1.2.0',
+        meson_version : '>=1.4.0',
         default_options : [
             # warning_level：控制编译器警告级别，具体参数由 Meson 根据编译器生成。
             #

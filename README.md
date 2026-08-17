@@ -19,6 +19,20 @@ pacman -Syu base-devel --noconfirm # 安装开发工具包
 pacman -Syu mingw-w64-clang-x86_64-toolchain mingw-w64-clang-x86_64-meson mingw-w64-clang-x86_64-cmake --noconfirm
 ```
 
+```wsl [ubuntu26.04]
+sudo apt update
+
+sudo apt install -y \
+  build-essential \
+  clang \
+  gdb \
+  meson \
+  ninja-build \
+  libc6-dbg \
+  glibc-source \
+  cmake
+```
+
 ### pacman
 
 ```txt
