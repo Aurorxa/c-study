@@ -28,9 +28,9 @@ int main() {
     /*
      * 在生活中，有些数据是有正负号的，如：温度、距离、速度等，这种数据就适合使用 signed 关键字来修饰。
      */
-    signed int temperature = 26;
-    signed int distance = 100;
-    signed int speed = 100;
+    signed int temperature = 26; // 类似于 int temperature = 26;
+    signed int distance = 100;   // 类似于 int distance = 100;
+    signed int speed = 100;      // 类似于 int speed = 100;
     printf("温度：%d\n", temperature);
     printf("距离：%d\n", distance);
     printf("速度：%d\n", speed);
