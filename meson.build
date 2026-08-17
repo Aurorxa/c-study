@@ -58,6 +58,24 @@ project('c-study', 'c',
         ],
 )
 
+cc = meson.get_compiler('c')
+
+# 启用有风险的隐式类型转换警告。
+# get_supported_arguments() 会过滤当前编译器不支持的选项，以兼容 GCC 和 Clang。
+# 项目已启用 werror=true，因此以下警告会被当作编译错误。
+conversion_warning_args = cc.get_supported_arguments([
+    # 检查可能改变值或丢失精度的隐式类型转换。
+    '-Wconversion',
+
+    # 检查有符号整数与无符号整数之间的隐式转换。
+    '-Wsign-conversion',
+
+    # 检查浮点数转换为整数或低精度浮点类型时的精度损失。
+    '-Wfloat-conversion',
+])
+
+add_project_arguments(conversion_warning_args, language : 'c')
+
 # ------------------------------------------------------------
 # 公共工具
 # ------------------------------------------------------------
