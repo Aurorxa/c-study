@@ -12,6 +12,10 @@
  */
 int main() {
     int a = 10;
+    /*
+     * a = a + 1;
+     * int b = a;
+     */
     int b = ++a;
     printf("a = %d\n", a); // a = 11
     printf("b = %d\n", b); // b = 11
@@ -19,6 +23,10 @@ int main() {
     printf_separator();
 
     a = 10;
+    /*
+     * int b = a;
+     * a = a + 1;
+     */
     b = a++;
     printf("a = %d\n", a); // a = 11
     printf("b = %d\n", b); // b = 10
@@ -26,6 +34,10 @@ int main() {
     printf_separator();
 
     a = 10;
+    /*
+     * a = a - 1;
+     * int b = a;
+     */
     b = --a;
     printf("a = %d\n", a); // a = 9
     printf("b = %d\n", b); // b = 9
@@ -33,6 +45,10 @@ int main() {
     printf_separator();
 
     a = 10;
+    /*
+     * int b = a;
+     * a = a - 1;
+     */
     b = a--;
     printf("a = %d\n", a); // a = 9
     printf("b = %d\n", b); // b = 10
