@@ -11,7 +11,7 @@
  */
 int main() {
     /*
-     *基本用法
+     * 基本用法
      */
     printf("Hello, World!\n"); // Hello, World!
     /*
