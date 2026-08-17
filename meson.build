@@ -2,16 +2,59 @@ project('c-study', 'c',
         version : '1.0.0',
         meson_version : '>=1.2.0',
         default_options : [
-            'warning_level=3', # -Wall -Wextra -Wpedantic
-            'c_std=c23', # C 语言标准
-            'werror=true', # warning 将提升为编译错误
-            'b_ndebug=if-release', # Release 模式关闭 assert()
-            # 以下参数对于 GCC 编译器无效，只针对 CLANG 编译器有效
-            # 开启 AddressSanitizer 和 UndefinedBehaviorSanitizer
-            # address 表示内存越界、use-after-free 等，undefined 表示未定义行为检查
-            # thread 表示线程安全检查，leak 表示内存泄漏检查，memory 表示未初始化内存读取
-            #            'b_sanitize=address,undefined',
-            #            'b_sanitize=address,undefined',
+            # warning_level：控制编译器警告级别，具体参数由 Meson 根据编译器生成。
+            #
+            # | 值         | 描述                               |
+            # |------------|------------------------------------|
+            # | 0          | 关闭 Meson 额外启用的警告          |
+            # | 1          | 启用常用警告                       |
+            # | 2          | 启用更多警告                       |
+            # | 3          | 启用较严格警告                     |
+            # | everything | 启用编译器支持的几乎所有警告       |
+            'warning_level=3',
+
+            # c_std：指定 C 语言标准；gnu* 表示相应标准加 GNU 扩展。
+            #
+            # | 值                                      | 描述                     |
+            # |-----------------------------------------|--------------------------|
+            # | none                                    | 不显式指定 C 标准        |
+            # | c89, c99, c11, c17, c18, c23, c2y      | ISO C 标准               |
+            # | c2x                                     | C23 定稿前的标准名称     |
+            # | gnu89, gnu99, gnu11, gnu17, gnu18      | ISO C 标准加 GNU 扩展    |
+            # | gnu23, gnu2x, gnu2y                    | 新版 C 标准加 GNU 扩展   |
+            'c_std=c23',
+
+            # werror：是否将所有编译警告提升为编译错误。
+            #
+            # | 值    | 描述                 |
+            # |-------|----------------------|
+            # | true  | 将警告视为错误       |
+            # | false | 仅报告警告，继续编译 |
+            'werror=true',
+
+            # b_ndebug：控制是否定义 NDEBUG；定义后标准 assert() 不执行检查。
+            #
+            # | 值         | 描述                              |
+            # |------------|-----------------------------------|
+            # | true       | 所有构建类型都关闭 assert()       |
+            # | false      | 所有构建类型都保留 assert()       |
+            # | if-release | 仅 release 构建关闭 assert()      |
+            'b_ndebug=if-release',
+
+            # b_sanitize 在 Windows/MSYS2 下的支持情况：
+            #
+            # | 值                | 作用                                     | GCC | Clang |
+            # |-------------------|------------------------------------------|-----|-------|
+            # | none              | 关闭 sanitizer                          | ✅️  | ✅️     |
+            # | address           | 检查内存越界、use-after-free 等         | ✅️  | ✅️     |
+            # | undefined         | 检查整数溢出、非法移位等未定义行为     | ✅️  | ✅️     |
+            # | address,undefined | 同时启用 address 和 undefined           | ✅️  | ✅️     |
+            # | thread            | 检查线程数据竞争；Windows 下通常不可用 | ❌  | ❌     |
+            # | leak              | 检查内存泄漏；Windows 下支持有限       | ❌  | ❌     |
+            # | memory            | 检查未初始化内存读取；GCC 不支持       | ❌  | ❌     |
+            #
+            # address 不能与 thread 或 memory 同时使用；推荐组合为 address,undefined。
+            # 'b_sanitize=address,undefined',
         ],
 )
 
