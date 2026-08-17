@@ -19,6 +19,10 @@ static void c_study_runtime_init() {
     }
 }
 
+const char *bool_to_string(bool value) {
+    return value ? "true" : "false";
+}
+
 /**
  * 打印分隔符
  */
