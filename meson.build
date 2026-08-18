@@ -35,23 +35,23 @@ project('c-study', 'c',
             # b_ndebug：控制是否定义 NDEBUG；定义后标准 assert() 不执行检查。
             #
             # | 值         | 描述                              |
-            # |------------|-----------------------------------|
-            # | true       | 所有构建类型都关闭 assert()       |
-            # | false      | 所有构建类型都保留 assert()       |
-            # | if-release | 仅 release 构建关闭 assert()      |
+            # |------------|----------------------------------|
+            # | true       | 所有构建类型都关闭 assert()         |
+            # | false      | 所有构建类型都保留 assert()         |
+            # | if-release | 仅 release 构建关闭 assert()       |
             'b_ndebug=if-release',
 
             # b_sanitize 在 Windows/MSYS2 下的支持情况：
             #
             # | 值                | 作用                                     | GCC | Clang |
-            # |-------------------|------------------------------------------|-----|-------|
-            # | none              | 关闭 sanitizer                          | ✅️  | ✅️     |
-            # | address           | 检查内存越界、use-after-free 等         | ✅️  | ✅️     |
-            # | undefined         | 检查整数溢出、非法移位等未定义行为     | ✅️  | ✅️     |
-            # | address,undefined | 同时启用 address 和 undefined           | ✅️  | ✅️     |
-            # | thread            | 检查线程数据竞争；Windows 下通常不可用 | ❌  | ❌     |
-            # | leak              | 检查内存泄漏；Windows 下支持有限       | ❌  | ❌     |
-            # | memory            | 检查未初始化内存读取；GCC 不支持       | ❌  | ❌     |
+            # |-------------------|-----------------------------------------|-----|-------|
+            # | none              | 关闭 sanitizer                           | ✅️  | ✅️   |
+            # | address           | 检查内存越界、use-after-free 等            | ✅️  | ✅️   |
+            # | undefined         | 检查整数溢出、非法移位等未定义行为            | ✅️  | ✅️   |
+            # | address,undefined | 同时启用 address 和 undefined             | ✅️  | ✅️   |
+            # | thread            | 检查线程数据竞争；Windows 下通常不可用       | ❌  | ❌   |
+            # | leak              | 检查内存泄漏；Windows 下支持有限            | ❌  | ❌   |
+            # | memory            | 检查未初始化内存读取；GCC 不支持             | ❌  | ❌   |
             #
             # address 不能与 thread 或 memory 同时使用；推荐组合为 address,undefined。
             # 'b_sanitize=address,undefined',
@@ -64,23 +64,23 @@ cc = meson.get_compiler('c')
 # get_supported_arguments() 会过滤当前编译器不支持的选项，以兼容 GCC 和 Clang。
 # 项目已启用 werror=true，因此以下警告会被当作编译错误。
 conversion_warning_args = cc.get_supported_arguments([
-    # 检查可能改变值或丢失精度的隐式类型转换。
-    '-Wconversion',
+                                                         # 检查可能改变值或丢失精度的隐式类型转换。
+                                                         '-Wconversion',
 
-    # 检查有符号整数与无符号整数之间的隐式转换。
-    '-Wsign-conversion',
+                                                         # 检查有符号整数与无符号整数之间的隐式转换。
+                                                         '-Wsign-conversion',
 
-    # 检查浮点数转换为整数或低精度浮点类型时的精度损失。
-    '-Wfloat-conversion',
-])
+                                                         # 检查浮点数转换为整数或低精度浮点类型时的精度损失。
+                                                         '-Wfloat-conversion',
+                                                     ])
 
 add_project_arguments(conversion_warning_args, language : 'c')
 
 # 严格检查 printf、scanf 等函数的格式字符串与参数类型。
 # 项目启用了 werror=true，因此格式不匹配会直接导致编译失败。
 format_warning_args = cc.get_supported_arguments([
-    '-Wformat=2',
-])
+                                                     '-Wformat=2',
+                                                 ])
 
 add_project_arguments(format_warning_args, language : 'c')
 
