@@ -1,21 +1,22 @@
 #include <stdio.h>
 
+#include "c_study.h"
+
 /**
- * 输入一个整数，判断是否是奇数
+ * 关系运算符
+ *  关系运算符的结果是布尔类型，即 true 或 false
+ * 主要有 == 、 != 、 > 、 < 、 >= 、 <=
  */
 int main() {
-    int num = 0;
-    printf("请输入一个整数：");
-    scanf("%d", &num);
-    /*
-     * 在 C 语言中，0 表示 false，非 0 表示 true
-     */
-    bool flag = num % 2 == 0;
-    printf("flag: %d\n", flag);
-    if (flag) {
-        printf("是偶数\n");
-    } else {
-        printf("是奇数\n");
-    }
+    int a = 10;
+    int b = 20;
+
+    printf("%d == %d: %s\n", a, b, bool_to_string(a == b)); // 10 == 20: false
+    printf("%d != %d: %s\n", a, b, bool_to_string(a != b)); // 10 != 20: true
+    printf("%d > %d: %s\n", a, b, bool_to_string(a > b)); // 10 > 20: false
+    printf("%d < %d: %s\n", a, b, bool_to_string(a < b)); // 10 < 20: true
+    printf("%d >= %d: %s\n", a, b, bool_to_string(a >= b)); // 10 >= 20: false
+    printf("%d <= %d: %s\n", a, b, bool_to_string(a <= b)); // 10 <= 20: true
+
     return 0;
 }
