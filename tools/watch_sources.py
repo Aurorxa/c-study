@@ -1,12 +1,19 @@
-from pathlib import Path
+"""监控 C 源文件结构变化，并自动刷新 Meson 构建规则。
+
+该脚本由 `mise run watch` 启动。它只比较 .c 文件路径集合，不读取文件内容，
+因此普通代码编辑不会触发配置；新增、删除或重命名源文件时才会 reconfigure。
+"""
+
 import subprocess
 import time
+from pathlib import Path
 
-
+# 所有路径都从脚本位置推导，避免依赖启动命令的当前工作目录。
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 MODULES_DIR = PROJECT_ROOT / "modules"
 BUILD_DIR = PROJECT_ROOT / "buildDir"
 
+# 轮询实现不依赖第三方文件监控库，适合这个小型学习项目。
 POLL_INTERVAL = 0.5
 
 
@@ -29,6 +36,8 @@ def get_project_structure() -> frozenset[str]:
 
 
 def reconfigure() -> None:
+    """让 Meson 重新扫描由脚本发现的模块和源文件列表。"""
+
     print()
     print("[Meson] Project structure changed, reconfiguring...")
 
@@ -57,6 +66,7 @@ def main() -> None:
     print(f"[Watcher] Watching: {MODULES_DIR}")
     print()
 
+    # 保存路径快照，只在集合发生变化时重新配置。
     previous = get_project_structure()
 
     while True:

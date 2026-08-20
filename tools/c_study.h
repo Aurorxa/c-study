@@ -2,6 +2,14 @@
 #define C_STUDY_H
 
 /**
+ * @file c_study.h
+ * @brief 所有示例模块共享的轻量辅助接口。
+ *
+ * meson.build 将 tools 目录加入每个目标的头文件搜索路径，模块可以直接
+ * include "c_study.h"。函数实现在 runtime_init.c 中。
+ */
+
+/**
  * @brief 获取数组的元素个数
  *
  * 只能用于数组，不能用于已经退化为指针的函数参数或普通指针。
