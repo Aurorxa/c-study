@@ -72,24 +72,29 @@ mise run test
 
 mise 任务及用途：
 
-| 命令                   | 用途                                 | 自动执行的依赖  |
-|------------------------|--------------------------------------|-----------------|
-| `mise run setup`       | 配置 Meson 构建目录                  | 无              |
-| `mise run build`       | 增量编译所有模块                     | `setup`         |
-| `mise run test`        | 编译后运行所有测试                   | `build → setup` |
-| `mise run clean`       | 删除整个 `buildDir`                  | 无              |
-| `mise run fresh`       | 清理并重新配置构建目录               | `clean`         |
-| `mise run rebuild`     | 从零配置并全量编译                   | `fresh → clean` |
-| `mise run reconfigure` | 重新配置已有构建目录                 | 无              |
-| `mise run watch`       | 监控 `.c` 文件结构变化并自动重新配置 | `setup`         |
+| 命令                   | 用途                                             | 自动执行的依赖  |
+|------------------------|--------------------------------------------------|-----------------|
+| `mise run setup`       | 初始化或复用现有的 Meson 构建目录                | 无              |
+| `mise run build`       | 增量编译所有模块，不执行静态分析                 | `setup`         |
+| `mise run check`       | 编译并按 `.clang-tidy` 对全部 C 源文件做严格检查 | `setup`         |
+| `mise run test`        | 普通编译成功后运行所有测试并输出失败日志         | `build → setup` |
+| `mise run clean`       | 跨平台删除整个 `buildDir`                        | 无              |
+| `mise run fresh`       | 清理并重新配置构建目录，但不编译                 | `clean`         |
+| `mise run rebuild`     | 从零配置并全量编译，不执行静态分析               | `fresh → clean` |
+| `mise run reconfigure` | 保留构建产物，重新读取 `meson.build`             | 无              |
+| `mise run watch`       | 监控 `.c` 文件结构变化并自动重新配置             | `setup`         |
 
-常规开发使用 `mise run build` 即可，它会保留 Meson 和 Ninja 的增量编译结果。 需要完全清理后重新构建时，使用
-`mise run rebuild`。
+### 推荐工作流
 
-修改已有 `.c` 文件的内容不需要重新配置。新增、删除或重命名 `.c` 文件会改变 Meson 的源文件列表，需要执行
-`mise run reconfigure`。开发期间也可以保持
-`mise run watch` 运行，让脚本在源文件结构变化时自动重新配置；该任务会先通过
-`setup` 确保 `buildDir` 已配置。
+- **日常学习**：运行 `mise run build`，保留增量编译结果，不执行严格的静态分析。
+- **检查危险写法**：运行 `mise run check`，使用 `.clang-tidy` 规则检查全部 C 源文件；发现诊断时任务失败。
+- **完全重新构建**：运行 `mise run rebuild`，自动清理、配置并编译。无需提前手动执行 `clean`。
+
+### 源文件变化
+
+- 只修改已有 `.c` 文件的内容：直接运行 `mise run build`。
+- 新增、删除或重命名 `.c` 文件：运行 `mise run reconfigure` 后再编译。
+- 持续调整文件结构：运行 `mise run watch`，由脚本监控变化并自动重新配置。
 
 mise 固定项目使用的 Python 版本；Clang、Meson 和 Ninja 由上面的 MSYS2 CLANG64 工具链提供。运行构建命令前，需要先将
 `CLANG_HOME` 配置为 CLANG64 的安装目录，再将 `%CLANG_HOME%\bin` 加入 `PATH`。例如：

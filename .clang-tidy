@@ -1,0 +1,11 @@
+---
+Checks: >-
+  -*,
+  clang-analyzer-*,
+  bugprone-*,
+  cert-*,
+  portability-*
+WarningsAsErrors: '*'
+HeaderFilterRegex: '^(modules|tools)[\\/]'
+FormatStyle: none
+...

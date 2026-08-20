@@ -4,38 +4,62 @@ python = "3.13"
 
 # [tasks] - 项目任务
 
+# 删除整个 Meson 构建目录；目录不存在时也不会报错。
+# 只在需要彻底清理缓存和构建产物时使用，日常增量编译无需执行。
 [tasks.clean]
 description = "Remove the Meson build directory"
-run = "powershell -NoProfile -Command \"if (Test-Path -LiteralPath 'buildDir') { Remove-Item -LiteralPath 'buildDir' -Recurse -Force }\""
+run = "python -c \"import shutil; shutil.rmtree('buildDir', ignore_errors=True)\""
 
+# 初始化 buildDir；已经配置过时会保留现有配置，不会清理构建产物。
 [tasks.setup]
 description = "Configure the Meson build directory"
 run = "meson setup buildDir"
 
+# 普通学习模式：先确保 buildDir 已配置，再增量编译所有模块。
+# 此任务不运行 clang-tidy，适合日常练习。
 [tasks.build]
-description = "Build all modules"
+description = "Build all modules without static analysis"
 depends = ["setup"]
 run = "meson compile -C buildDir"
 
+# 严格检查模式：编译项目并运行 .clang-tidy 中配置的静态检查。
+# clang-tidy 的诊断被视为错误，因此发现危险代码时任务会失败。
+[tasks.check]
+description = "Build all modules and run strict clang-tidy analysis"
+depends = ["setup"]
+run = [
+    # 为当前构建目录生成 clang-tidy Ninja 目标。
+    "meson configure buildDir -Dc_clang_tidy=clang-tidy",
+    # 先执行正常编译，确保编译数据库和目标都是最新的。
+    "meson compile -C buildDir",
+    # 对编译数据库中的所有 C 源文件执行静态分析。
+    "ninja -C buildDir clang-tidy",
+]
+
+# 普通编译成功后运行全部 Meson 测试，并打印失败测试的日志。
 [tasks.test]
 description = "Run all tests"
 depends = ["build"]
 run = "meson test -C buildDir --print-errorlogs"
 
+# 删除 buildDir 后重新执行 Meson 配置，不进行编译。
 [tasks.fresh]
 description = "Clean and configure a fresh Meson build directory"
 depends = ["clean"]
 run = "meson setup buildDir"
 
+# 从干净的 buildDir 开始重新配置并全量编译，不运行 clang-tidy。
 [tasks.rebuild]
 description = "Clean, configure, and rebuild all modules"
 depends = ["fresh"]
 run = "meson compile -C buildDir"
 
+# 保留构建产物，仅重新读取 meson.build 并刷新构建规则。
 [tasks.reconfigure]
 description = "Reconfigure the existing Meson build directory"
 run = "meson setup --reconfigure buildDir"
 
+# 监控 C 源文件的新增、删除和重命名，并自动重新配置 Meson。
 [tasks.watch]
 description = "Watch C source structure"
 depends = ["setup"]

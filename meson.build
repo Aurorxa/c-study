@@ -53,8 +53,11 @@ project('c-study', 'c',
             # | leak              | 检查内存泄漏；Windows 下支持有限            | ❌  | ❌   |
             # | memory            | 检查未初始化内存读取；GCC 不支持             | ❌  | ❌   |
             #
-            # address 不能与 thread 或 memory 同时使用；推荐组合为 address,undefined。
-            # 'b_sanitize=address,undefined',
+            # address 不能与 thread 或 memory 同时使用。
+            # Windows 下 AddressSanitizer 会与 GDB 的启动过程冲突，因此调试构建默认只启用 undefined。
+            # 需要 ASan 时可显式传入 -Db_sanitize=address,undefined，并直接运行或测试程序。
+            # Sanitizer 在程序运行或测试覆盖到危险路径时报告错误，并非编译期静态检查。
+            'b_sanitize=undefined',
         ],
 )
 
