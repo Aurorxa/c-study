@@ -27,7 +27,7 @@ static void c_study_runtime_init() {
     const char *locale_name = "";
 #endif
     if (setlocale(LC_ALL, locale_name) == nullptr) {
-        fputs("warning: failed to configure the user locale\n", stderr);
+        (void)fputs("warning: failed to configure the user locale\n", stderr);
     }
 }
 
