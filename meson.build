@@ -101,6 +101,10 @@ discover_modules_script = (
     project_root / 'tools/discover_modules.py'
 )
 
+discover_libraries_script = (
+    project_root / 'tools/discover_libraries.py'
+)
+
 collect_sources_script = (
     project_root / 'tools/collect_sources.py'
 )
@@ -110,6 +114,49 @@ copy_resources_script = (
 )
 
 runtime_init_source = files('tools/runtime_init.c')
+
+# ------------------------------------------------------------
+# 递归发现并创建 libs 下的静态库
+# ------------------------------------------------------------
+
+libraries = run_command(
+    python,
+    discover_libraries_script,
+    project_root / 'libs',
+    check : true,
+).stdout().splitlines()
+
+project_static_libraries = []
+project_library_include_directories = []
+
+foreach library : libraries
+    library_root = 'libs' / library
+    library_target = library.replace('/', '.')
+
+    library_sources = run_command(
+        python,
+        collect_sources_script,
+        project_root,
+        project_root / library_root,
+        'main',
+        check : true,
+    ).stdout().splitlines()
+
+    library_include_directories = []
+    foreach include_dir : ['headers', 'public']
+        include_path = library_root / 'src/main' / include_dir
+        if fs.is_dir(include_path)
+            library_include_directories += include_directories(include_path)
+        endif
+    endforeach
+
+    project_static_libraries += static_library(
+        library_target,
+        library_sources,
+        include_directories : library_include_directories,
+    )
+    project_library_include_directories += library_include_directories
+endforeach
 
 # ------------------------------------------------------------
 # 递归发现 modules 下包含 src/main/c/main.c 的模块
@@ -150,7 +197,7 @@ foreach module : modules
         endif
     endforeach
 
-    main_include_directories = [project_support_include]
+    main_include_directories = [project_support_include] + project_library_include_directories
     foreach include_dir : ['headers', 'public']
         include_path = module_root / 'src/main' / include_dir
         if fs.is_dir(include_path)
@@ -176,6 +223,7 @@ foreach module : modules
         module_target,
         main_sources + runtime_init_source,
         link_depends : main_resources,
+        link_with : project_static_libraries,
         include_directories : main_include_directories,
     )
 
@@ -217,6 +265,7 @@ foreach module : modules
             module_target + '.test',
             test_sources + reusable_main_sources + runtime_init_source,
             link_depends : [main_resources, test_resources],
+            link_with : project_static_libraries,
             include_directories : test_include_directories,
         )
 

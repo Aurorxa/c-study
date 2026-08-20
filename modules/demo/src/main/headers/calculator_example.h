@@ -1,7 +1,0 @@
-#ifndef CALCULATOR_EXAMPLE_H
-#define CALCULATOR_EXAMPLE_H
-
-#define EXAMPLE_LEFT 12
-#define EXAMPLE_RIGHT 5
-
-#endif

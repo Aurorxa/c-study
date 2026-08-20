@@ -1,13 +1,6 @@
-#include "calculator.h"
-#include "calculator_example.h"
-
-#include <stdio.h>
+#include "demo.h"
 
 int main() {
-    printf("12 + 5 = %d\n", calculate(EXAMPLE_LEFT, '+', EXAMPLE_RIGHT));
-    printf("12 - 5 = %d\n", calculate(EXAMPLE_LEFT, '-', EXAMPLE_RIGHT));
-    printf("12 * 5 = %d\n", calculate(EXAMPLE_LEFT, '*', EXAMPLE_RIGHT));
-    printf("12 / 5 = %d\n", calculate(EXAMPLE_LEFT, '/', EXAMPLE_RIGHT));
-    printf("12 %% 5 = %d\n", calculate(EXAMPLE_LEFT, '%', EXAMPLE_RIGHT));
+    run_demo();
     return 0;
 }

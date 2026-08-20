@@ -11,6 +11,7 @@ from pathlib import Path
 # 所有路径都从脚本位置推导，避免依赖启动命令的当前工作目录。
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 MODULES_DIR = PROJECT_ROOT / "modules"
+LIBRARIES_DIR = PROJECT_ROOT / "libs"
 BUILD_DIR = PROJECT_ROOT / "buildDir"
 
 # 轮询实现不依赖第三方文件监控库，适合这个小型学习项目。
@@ -25,12 +26,11 @@ def get_project_structure() -> frozenset[str]:
     新建、删除、重命名 .c 才会。
     """
 
-    if not MODULES_DIR.exists():
-        return frozenset()
-
     return frozenset(
         path.relative_to(PROJECT_ROOT).as_posix()
-        for path in MODULES_DIR.rglob("*.c")
+        for source_root in (MODULES_DIR, LIBRARIES_DIR)
+        if source_root.exists()
+        for path in source_root.rglob("*.c")
         if path.is_file()
     )
 
@@ -63,7 +63,7 @@ def reconfigure() -> None:
 
 def main() -> None:
     print(f"[Watcher] Project: {PROJECT_ROOT}")
-    print(f"[Watcher] Watching: {MODULES_DIR}")
+    print(f"[Watcher] Watching: {MODULES_DIR}, {LIBRARIES_DIR}")
     print()
 
     # 保存路径快照，只在集合发生变化时重新配置。
