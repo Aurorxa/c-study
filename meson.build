@@ -109,7 +109,7 @@ copy_resources_script = (
 runtime_init_source = files('tools/runtime_init.c')
 
 # ------------------------------------------------------------
-# 自动发现 modules/*
+# 递归发现 modules 下包含 src/main/c/main.c 的模块
 # ------------------------------------------------------------
 
 modules = run_command(
@@ -127,6 +127,7 @@ modules = run_command(
 foreach module : modules
 
     module_root = 'modules' / module
+    module_target = module.replace('/', '.')
 
     main_sources = run_command(
         python,
@@ -155,8 +156,8 @@ foreach module : modules
     endforeach
 
     main_resources = custom_target(
-        module + '.main-resources',
-        output : module + '.main-resources.stamp',
+        module_target + '.main-resources',
+        output : module_target + '.main-resources.stamp',
         command : [
             python,
             copy_resources_script,
@@ -169,7 +170,7 @@ foreach module : modules
     )
 
     executable(
-        module,
+        module_target,
         main_sources + runtime_init_source,
         link_depends : main_resources,
         include_directories : main_include_directories,
@@ -179,8 +180,8 @@ foreach module : modules
 
     if fs.exists(test_entry)
         test_resources = custom_target(
-            module + '.test-resources',
-            output : module + '.test-resources.stamp',
+            module_target + '.test-resources',
+            output : module_target + '.test-resources.stamp',
             command : [
                 python,
                 copy_resources_script,
@@ -210,14 +211,14 @@ foreach module : modules
         endforeach
 
         test_executable = executable(
-            module + '.test',
+            module_target + '.test',
             test_sources + reusable_main_sources + runtime_init_source,
             link_depends : [main_resources, test_resources],
             include_directories : test_include_directories,
         )
 
         test(
-            module,
+            module_target,
             test_executable,
             env : {
                 'C_STUDY_MAIN_RESOURCES' : meson.project_build_root() / 'resources' / module / 'main',

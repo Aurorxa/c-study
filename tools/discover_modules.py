@@ -1,5 +1,5 @@
-from pathlib import Path
 import sys
+from pathlib import Path
 
 
 def main() -> None:
@@ -15,21 +15,12 @@ def main() -> None:
     if not modules_dir.is_dir():
         return
 
-    for module_dir in sorted(modules_dir.iterdir()):
-        if not module_dir.is_dir():
-            continue
+    main_files = modules_dir.glob("**/src/main/c/main.c")
 
-        main_file = (
-                module_dir
-                / "src"
-                / "main"
-                / "c"
-                / "main.c"
-        )
-
-        # 只有包含 main.c 才认为这是 executable module
-        if main_file.is_file():
-            print(module_dir.name)
+    for main_file in sorted(main_files):
+        # main.c 上方三级是模块根目录：<c>/main/src/<module> 。
+        module_dir = main_file.parents[3]
+        print(module_dir.relative_to(modules_dir).as_posix())
 
 
 if __name__ == "__main__":
