@@ -159,7 +159,7 @@ foreach library : libraries
 endforeach
 
 # ------------------------------------------------------------
-# 递归发现 modules 下包含 src/main/c/main.c 的模块
+# 递归发现 modules 下通过 meson.build 显式声明的模块
 # ------------------------------------------------------------
 
 modules = run_command(
@@ -177,7 +177,17 @@ modules = run_command(
 foreach module : modules
 
     module_root = 'modules' / module
-    module_target = module.replace('/', '.')
+    module_name = ''
+    module_dependencies = []
+
+    # 子模块在自己的 meson.build 中声明身份和专属依赖；公共构建约定由父项目提供。
+    subdir(module_root)
+
+    if module_name == ''
+        error(module_root + '/meson.build must declare module_name')
+    endif
+
+    module_target = module_name
 
     main_sources = run_command(
         python,
@@ -224,6 +234,7 @@ foreach module : modules
         main_sources + runtime_init_source,
         link_depends : main_resources,
         link_with : project_static_libraries,
+        dependencies : module_dependencies,
         include_directories : main_include_directories,
     )
 
@@ -244,6 +255,8 @@ foreach module : modules
             build_by_default : true,
         )
 
+        test_include_directories = main_include_directories
+
         test_sources = run_command(
             python,
             collect_sources_script,
@@ -252,8 +265,6 @@ foreach module : modules
             'test',
             check : true,
         ).stdout().splitlines()
-
-        test_include_directories = main_include_directories
         foreach include_dir : ['headers', 'public']
             include_path = module_root / 'src/test' / include_dir
             if fs.is_dir(include_path)
@@ -266,6 +277,7 @@ foreach module : modules
             test_sources + reusable_main_sources + runtime_init_source,
             link_depends : [main_resources, test_resources],
             link_with : project_static_libraries,
+            dependencies : module_dependencies,
             include_directories : test_include_directories,
         )
 

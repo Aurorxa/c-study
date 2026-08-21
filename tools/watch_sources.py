@@ -1,7 +1,7 @@
 """监控 C 源文件结构变化，并自动刷新 Meson 构建规则。
 
-该脚本由 `mise run watch` 启动。它只比较 .c 文件路径集合，不读取文件内容，
-因此普通代码编辑不会触发配置；新增、删除或重命名源文件时才会 reconfigure。
+该脚本由 `mise run watch` 启动。它只比较 .c 源文件和模块 meson.build 的
+路径集合，不读取文件内容，因此普通代码编辑不会触发配置。
 """
 
 import subprocess
@@ -22,15 +22,16 @@ def get_project_structure() -> frozenset[str]:
     """
     只关心会改变 Meson target/source set 的路径。
 
-    修改已有 .c 的内容不会触发 reconfigure。
-    新建、删除、重命名 .c 才会。
+    修改已有文件的内容不会触发 reconfigure。新建、删除、重命名 .c，
+    或新增、删除模块的 meson.build 时才会。
     """
 
     return frozenset(
         path.relative_to(PROJECT_ROOT).as_posix()
         for source_root in (MODULES_DIR, LIBRARIES_DIR)
         if source_root.exists()
-        for path in source_root.rglob("*.c")
+        for pattern in ("*.c", "meson.build")
+        for path in source_root.rglob(pattern)
         if path.is_file()
     )
 

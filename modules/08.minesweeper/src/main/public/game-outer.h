@@ -1,6 +1,5 @@
-#ifndef C_STUDY_GAME_H
-#define C_STUDY_GAME_H
-#include <time.h>
+#ifndef C_STUDY_GAME_OUTER_H
+#define C_STUDY_GAME_OUTER_H
 
 /* 游戏函数的头文件 */
 
@@ -10,6 +9,6 @@
  * @param max 最大值
  * @return
  */
-int random(int min, int max);
+int random_in_range(int min, int max);
 
-#endif
+#endif // C_STUDY_GAME_OUTER_H
