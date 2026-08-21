@@ -45,21 +45,54 @@ pacman -Qu  # 查看可更新的软件包
 pacman -Rs <软件名>  # 卸载软件包
 ```
 
-## 多模块 的 demo 示例在 modules 目录下：
+## 项目结构
+
+`libs` 是静态库目录，其中的库会被自动发现并链接到各模块；`modules` 是模块目录，
+每个包含 `src/main/c/main.c` 的目录都会被识别为一个可执行模块。`demo` 完整展示了模块的推荐目录结构。
 
 ```text
-demo/                     # demo 示例模块
-└── src/                  # 模块的源代码根目录
-    ├── main/             # 正式程序
-    │   ├── c/            # C 源文件
-    │   ├── headers/      # 模块内部使用的私有头文件
-    │   ├── public/       # 可供外部使用的公共头文件
-    │   └── resources/    # 正式程序使用的资源文件
-    └── test/             # 测试程序
-        ├── c/            # 测试 C 源文件
-        ├── headers/      # 测试内部使用的私有头文件
-        ├── public/       # 测试公共头文件
-        └── resources/    # 测试数据及资源文件
+c-study/
+├── libs/                         # 静态库目录
+│   └── calculator/               # 计算器静态库集合
+├── modules/                      # 学习示例及可执行模块目录
+│   ├── 00.intro/                 # 其他模块（内部结构与 demo 约定一致）
+│   ├── 01.datatype/
+│   ├── 01.variables/
+│   ├── 02.variables/
+│   ├── 03.operator/
+│   ├── 04.io/
+│   ├── 05.branch/
+│   ├── 06.loop/
+│   ├── 09.debug/
+│   └── demo/                     # 完整的模块结构示例
+│       └── src/                  # 模块源代码根目录
+│           ├── main/             # 正式程序
+│           │   ├── c/            # C 源文件（main.c 为程序入口）
+│           │   │   ├── demo.c
+│           │   │   └── main.c
+│           │   ├── headers/      # 模块内部使用的私有头文件
+│           │   │   └── demo_config.h
+│           │   ├── public/       # 可供外部使用的公共头文件
+│           │   │   └── demo.h
+│           │   └── resources/    # 正式程序使用的资源文件
+│           │       └── README.txt
+│           └── test/             # 测试程序
+│               ├── c/            # 测试 C 源文件（main.c 为测试入口）
+│               │   ├── calculator_test.c
+│               │   └── main.c
+│               ├── headers/      # 测试内部使用的私有头文件
+│               │   └── calculator_expected.h
+│               ├── public/       # 测试公共头文件
+│               │   └── calculator_test.h
+│               └── resources/    # 测试数据及资源文件
+│                   └── cases.txt
+├── tools/                        # 模块发现、资源复制等构建辅助脚本
+├── buildDir/                     # Meson 构建产物目录（配置后生成）
+├── meson.build                   # Meson 项目及构建规则
+├── mise.toml                     # mise 工具版本与任务配置
+├── .clang-format                 # C 代码格式化规则
+├── .clang-tidy                   # C 静态检查规则
+└── README.md                     # 项目说明
 ```
 
 ## 常用命令

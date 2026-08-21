@@ -1,11 +1,15 @@
 #include <stdio.h>
 
-#include "c_study.h"
-/**
- */
+void test() {
+    static int n = 10;
+    n++;
+    printf("%d ", n);
+}
+
 int main() {
-    int arr[] = {0};
-    printf("len: %zu\n", ARRAY_LENGTH(arr));
-    printf("arr[0]: %d\n", arr[0]);
+    for (int i = 0; i < 10; i++) {
+        test();
+    }
+
     return 0;
 }
