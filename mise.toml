@@ -64,3 +64,9 @@ run = "meson setup --reconfigure buildDir"
 description = "Watch C source structure"
 depends = ["setup"]
 run = "python tools/watch_sources.py"
+
+# 扫描所有模块，根据 modules 下的相对路径同步各自的 Meson 目标名。
+# 复制模块目录后直接执行：mise run module:rename
+[tasks."module:rename"]
+description = "Sync all Meson module names with their directories"
+run = "python tools/sync_module_name.py"
