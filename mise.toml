@@ -1,0 +1,29 @@
+[tasks.setup]
+description = "Initialize the Meson build directory"
+run = "meson setup buildDir"
+outputs = ["buildDir/build.ninja"]
+
+[tasks.configure]
+description = "Reconfigure Meson and rescan src/**/*.c"
+depends = ["setup"]
+run = "meson setup --reconfigure buildDir"
+
+[tasks.build]
+description = "Configure and build the project"
+depends = ["configure"]
+run = "meson compile -C buildDir"
+
+[tasks.run]
+description = "Build and run a module: mise run run <module-name>"
+depends = ["build"]
+run = "meson test -C buildDir --verbose"
+
+[tasks.clean]
+description = "Remove compiled outputs while keeping Meson configuration"
+depends = ["setup"]
+run = "meson compile -C buildDir --clean"
+
+[tasks.install]
+description = "Build and install the program"
+depends = ["build"]
+run = "meson install -C buildDir"

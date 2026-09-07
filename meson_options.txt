@@ -1,0 +1,6 @@
+option(
+        'module',
+        type : 'string',
+        value : '',
+        description : 'Only load this module directory (for example: 01.const/const-27); empty loads all modules',
+)
