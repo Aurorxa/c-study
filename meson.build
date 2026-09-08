@@ -21,6 +21,7 @@ project(
 
 # 自动发现根目录以下的 meson.build。module 为空时加载全部，否则只加载指定练习；
 # 公共库始终先于练习模块加载。
+fs = import('fs')
 python = import('python').find_installation()
 submodule_result = run_command(
         python,

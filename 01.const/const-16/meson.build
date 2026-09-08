@@ -36,10 +36,16 @@ foreach index : range(scan_records.length())
         module_files += scan_records[index]
     endif
 endforeach
+# 模块可以没有 include 目录；存在时才添加头文件搜索路径。
+module_inc = []
+if fs.is_dir(meson.current_source_dir() / 'include')
+    module_inc = include_directories('include')
+endif
+
 module = executable(
     module_target,
     module_files,
-    include_directories : include_directories('include'),
+    include_directories : module_inc,
     dependencies : common_dep,
 )
 test(module_target, module)

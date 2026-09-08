@@ -1,6 +1,8 @@
+# value 是默认值：空字符串自动加载全部模块，也可以填写任意练习模块的相对路径。
+# 已配置的构建目录通过 meson configure buildDir -Dmodule=路径 切换；-Dmodule= 恢复全部。
 option(
         'module',
         type : 'string',
         value : '',
-        description : 'Only load this module directory (for example: 01.const/const-27); empty loads all modules',
+        description : 'Module directory relative to the project root; empty automatically loads all modules',
 )

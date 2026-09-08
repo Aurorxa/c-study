@@ -14,7 +14,10 @@ for path in sorted((*root.rglob('*.c'), *root.rglob('*.h'))):
 ).stdout().strip()
 
 common_files = common_scan.split('\n')
-common_inc = include_directories('include')
+common_inc = []
+if fs.is_dir(meson.current_source_dir() / 'include')
+    common_inc = include_directories('include')
+endif
 common_lib = static_library(
     'common',
     common_files,
