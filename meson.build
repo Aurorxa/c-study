@@ -1,8 +1,22 @@
 project(
+        # 项目名称
         'c-study',
+        # 项目使用 C 语言
         'c',
+        # 项目版本号
         version : '1.0.0',
-        default_options : ['warning_level=3', 'c_std=c2x'],
+        default_options : [
+                # 启用较严格的编译器警告
+                'warning_level=3',
+                # 将所有编译器警告视为错误
+                'werror=true',
+                # 检查可能改变数值或丢失精度的隐式类型转换
+                'c_args=-Wconversion',
+                # 在运行时检查内存错误和未定义行为
+                'b_sanitize=address,undefined',
+                # 使用 C23 标准；Meson 中 c2x 是其兼容名称
+                'c_std=c2x',
+        ],
 )
 
 # 自动发现根目录以下的 meson.build。module 为空时加载全部，否则只加载指定练习；
